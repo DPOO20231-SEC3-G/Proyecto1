@@ -27,5 +27,14 @@ public class Cama {
 		
 		return medidas;
 	}
+	
+	public int getNumPersonas() {
+		
+		return this.numPersonas;
+	}
+	
+	public boolean getUsoNinos() {
+		return this.usoNinos;
+	}
 }
 
