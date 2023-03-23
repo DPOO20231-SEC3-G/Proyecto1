@@ -39,4 +39,6 @@ public class Servicio {
 	public HashMap<String ,ArrayList<Time>> getDisponibilidad() {
 		return this.disponibilidad;
 	}
+	
+	
 }
