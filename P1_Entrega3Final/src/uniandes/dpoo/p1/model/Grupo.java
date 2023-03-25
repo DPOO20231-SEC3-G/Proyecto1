@@ -1,4 +1,4 @@
-package uniandes.dpoo.model.administradorhuespedes;
+package uniandes.dpoo.p1.model;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
-package uniandes.dpoo.model.administradorhabitaciones;
+package uniandes.dpoo.p1.model;
+
 import java.util.Date;
 import java.util.HashMap;
-
-import uniandes.dpoo.model.administradorhuespedes.*;
+import java.io.Serializable;
 
 public class Habitacion {
 	
@@ -44,15 +44,15 @@ public class Habitacion {
 		return tipoHabitacion;
 	}
 
-	public boolean isBalcon() {
+	public boolean getBalcon() {
 		return balcon;
 	}
 
-	public boolean isCocina() {
+	public boolean getCocina() {
 		return cocina;
 	}
 
-	public boolean isVista() {
+	public boolean getVista() {
 		return vista;
 	}
 

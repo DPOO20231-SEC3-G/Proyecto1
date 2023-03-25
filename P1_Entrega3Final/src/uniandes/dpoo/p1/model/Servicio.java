@@ -1,4 +1,4 @@
-package uniandes.dpoo.model.administradorservicios;
+package uniandes.dpoo.p1.model;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -32,13 +32,14 @@ public class Servicio {
 		return this.descripcion;
 	}
 
-	public boolean isCobroGrupal() {
+	public boolean getCobroGrupal() {
 		return this.cobroGrupal;
 	}
 
 	public HashMap<String ,ArrayList<Time>> getDisponibilidad() {
 		return this.disponibilidad;
 	}
+	
 	
 	
 }

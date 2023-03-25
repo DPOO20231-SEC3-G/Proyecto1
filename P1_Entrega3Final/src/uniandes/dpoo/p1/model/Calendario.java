@@ -1,4 +1,4 @@
-package uniandes.dpoo.model.administradorhabitaciones;
+package uniandes.dpoo.p1.model;
 import java.util.Date;
 import java.util.HashMap;
 
