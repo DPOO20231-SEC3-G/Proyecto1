@@ -1,6 +1,8 @@
 package uniandes.dpoo.p1.model;
 
-public class Cama {
+import java.io.Serializable;
+
+public class Cama implements Serializable{
 	
 	private double ancho;
 	
@@ -35,6 +37,15 @@ public class Cama {
 	
 	public boolean getUsoNinos() {
 		return this.usoNinos;
+	}
+	
+	public String toString() {
+		String paraNiños = "No";
+		if (usoNinos == true) {
+			paraNiños = "Si";
+		}
+		
+		return "Ancho = $f\nAlto = $f\nCapacidad = $d\nApta para niños = $s".formatted(this.ancho,this.alto,this.numPersonas,paraNiños);
 	}
 }
 

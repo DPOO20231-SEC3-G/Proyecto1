@@ -1,6 +1,7 @@
 package uniandes.dpoo.p1.model;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Calendar;
 
 public class Calendario {
 	
@@ -43,4 +44,30 @@ public class Calendario {
 	public void setTarifaSuitDoble(HashMap<Date, Integer > tarifaSuitDoble) {
 		this.tarifaSuitDoble = tarifaSuitDoble;
 	}
+	
+	public String obtenerDiaSemana(Date fecha) {
+	    Calendar calendario = Calendar.getInstance();
+	    calendario.setTime(fecha);
+
+	    int dia = calendario.get(Calendar.DAY_OF_WEEK);
+	    switch (dia) {
+	      case Calendar.SUNDAY:
+	        return "domingo";
+	      case Calendar.MONDAY:
+	        return "lunes";
+	      case Calendar.TUESDAY:
+	        return "martes";
+	      case Calendar.WEDNESDAY:
+	        return "miercoles";
+	      case Calendar.THURSDAY:
+	        return "jueves";
+	      case Calendar.FRIDAY:
+	        return "viernes";
+	      case Calendar.SATURDAY:
+	        return "sabado";
+	      default:
+	        return "";
+	    }
+	}
+	
 }
