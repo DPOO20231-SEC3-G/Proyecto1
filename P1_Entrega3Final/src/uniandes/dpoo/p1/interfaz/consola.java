@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
+import uniandes.dpoo.p1.model.Cama;
 import uniandes.dpoo.p1.procesamiento.Hotel;
 
 public class consola {
@@ -72,7 +74,7 @@ public class consola {
 				"4.Cerrar aplicacion");
 	}
 	
-	public void mostrarMenuAdministrador() {
+	public void mostrarMenuAdministrador() throws FileNotFoundException, ClassNotFoundException, IOException {
 		System.out.println("Como administrador usted puede:\n"
 				+"1.Cargar un nuevo archivo de habitaciones\n"
 				+"2.Crear una nueva habitacion\n"
@@ -83,7 +85,7 @@ public class consola {
 		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
 		
 		if (opcionAEjecutar == 1) {
-			ejecutarCargarArchivoHabitaciones();
+			ejecutarCargaArchivoHabitaciones();
 		}
 		else if(opcionAEjecutar == 2) {
 			ejecutarCrearHabitacion();
@@ -116,6 +118,17 @@ public class consola {
 		return null;
 	}
 	
+	public boolean boolInput(String mensaje) {
+		int rta = Integer.parseInt(input(mensaje));
+		
+		while(rta != 1 && rta != 2) {
+			System.out.println("Valor invalido.");
+			rta = Integer.parseInt(input("Ingrese una opcion (1- True/ 2- False)"));
+		}
+		
+		return 1 == rta;
+	}
+	
 	public void ejecutarIniciarSesion() {
 		
 		String user = input("Ingrese su usuario");
@@ -132,6 +145,42 @@ public class consola {
 	public void ejecutarCargaArchivoHabitaciones() throws FileNotFoundException, ClassNotFoundException, IOException {
 		hotel.getAdministradorHabitaciones().cargarHabitaciones();
 		System.out.println("Se ha cargado exitosamente el archivo que se encuentra en la ubicacion predeterminada.");
+	}
+	
+	public void ejecutarCrearHabitacion() throws NumberFormatException, IOException {
+		Integer nIdHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion"));
+		int nId = nIdHabitacion;
+		String nUbicacion = input("Ingrese la ubicacion");
+		int nNumPersonas = Integer.parseInt(input("Ingrese la capacidad maxima de la habitacion"));
+		char nTipoHabitacion = input("Ingrese el tipo de habitacion ('e' - Estandar / 's' - Suit / 'd' - Suit doble ").replaceAll(" ", "").charAt(1);
+		while(nTipoHabitacion != 'e' && nTipoHabitacion != 's' && nTipoHabitacion != 'd') {
+			System.out.println("Caracter invalido");
+			nTipoHabitacion = input("Ingrese el tipo de habitacion ('e' - Estandar / 's' - Suit / 'd' - Suit doble ").replaceAll(" ", "").charAt(1);
+			}
+		boolean nBalcon = boolInput("Ingrese si tiene balcon (1- True/ 2- False)");
+		boolean nCocina = boolInput("Ingrese si tiene cocina (1- True/ 2- False)");
+		boolean	nVista = boolInput("Ingrese si tiene vista (1- True/ 2- False)");
+		boolean continuarCamas = true;
+		ArrayList<Cama> camas = new ArrayList<Cama>();
+		System.out.println("A continuacion ingrese la informacion de la primera cama.");
+		while (continuarCamas) {
+			double nAncho = Double.parseDouble(input("Ingrese el ancho de la cama"));
+			double nAlto = Double.parseDouble(input("Ingrese el alto de la cama"));
+			int nNumPersonasCama = Integer.parseInt(input("Ingrese la capacidad de la cama"));
+			boolean nUsoNinos = boolInput("Ingrese si es apta para ninos");
+			hotel.getAdministradorHabitaciones().agregarCamaALista(camas, nAncho, nAlto, nNumPersonasCama, nUsoNinos);
+			continuarCamas = boolInput("Desea agregar otra cama? (1- True/ 2- False)");
+		}
+		hotel.getAdministradorHabitaciones().crearHabitacion(nIdHabitacion, nId, nUbicacion, nNumPersonas, nTipoHabitacion, nBalcon, nCocina, nVista, camas);
+		
+	}
+	
+	public void ejecutarCargarArchivoTarifas() throws FileNotFoundException, ClassNotFoundException, IOException {
+		hotel.getAdministradorHabitaciones().cargarTarifas();
+	}
+	
+	public void ejecutarModificarTarifasHabitaciones() {
+		
 	}
 
 }

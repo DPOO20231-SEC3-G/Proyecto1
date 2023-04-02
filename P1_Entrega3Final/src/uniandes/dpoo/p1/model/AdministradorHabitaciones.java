@@ -154,5 +154,11 @@ public class AdministradorHabitaciones {
 		System.out.print(habitacionInfo.toString()+"\nEstado = "+estado);
 		
 	}
+	
+	public ArrayList<Cama> agregarCamaALista(ArrayList<Cama> lista,double ancho, double alto, int numPersonas, boolean usoNinos){
+		lista.add(new Cama(ancho, alto, numPersonas, usoNinos));
+		
+		return lista;
+	}
 		
 }
