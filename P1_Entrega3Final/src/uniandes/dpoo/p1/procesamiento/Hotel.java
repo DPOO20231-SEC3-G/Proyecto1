@@ -21,6 +21,10 @@ public class Hotel {
 	
 	private AdministradorHabitaciones administradorHabitaciones;
 	
+	private AdministradorServicios administradorServicios;
+
+	private AdministradorHuespedes administradorHuespedes;
+	
 	private Usuario sesionIniciada;
 	
 	public void cargarCuentas() throws FileNotFoundException, IOException, ClassNotFoundException {
@@ -71,6 +75,14 @@ public class Hotel {
 	
 	public AdministradorHabitaciones getAdministradorHabitaciones() {
 		return this.administradorHabitaciones;
+	}
+
+	public AdministradorHuespedes getAdministradorHuespedes() {
+		return this.administradorHuespedes;
+	}
+
+	public AdministradorServicios getAdministradorServicios() {
+		return this.administradorServicios;
 	}
 	
 }
