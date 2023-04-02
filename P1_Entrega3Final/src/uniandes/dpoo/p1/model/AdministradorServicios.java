@@ -1,5 +1,13 @@
 package uniandes.dpoo.p1.model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class AdministradorServicios {
 	
 	private String fichero = "./data/"; 
@@ -43,6 +51,6 @@ public class AdministradorServicios {
 	}
 
     public HashMap<String,Servicio> getInventario(){
-        return this.inventario
+        return this.inventario;
     }
 }
