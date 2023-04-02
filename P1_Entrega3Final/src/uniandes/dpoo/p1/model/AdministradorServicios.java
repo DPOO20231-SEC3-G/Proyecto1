@@ -4,21 +4,21 @@ public class AdministradorServicios {
 	
 	private String fichero = "./data/"; 
 	
-	private ArrayList<Servicio> inventario;
+	private HashMap<String,Servicio> inventario;
 	
-	private HashMap <String,ArrayList<Servicio>> menu;
+	private HashMap<String,Servicio> menu;
 	
 	public void cargarServicios() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Servicios.data"))) {
-			this.inventario = (ArrayList<Servicio>) ois.readObject();
+			this.inventario = (HashMap<String,Servicio>) ois.readObject();
 		}
 	}
 	
 	public void cargarMenuRestaurante() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Restaurante.data"))) {
-			this.inventario = (HashMap<String, ArrayList<Servicio>>) ois.readObject();
+			this.inventario = (HashMap<String,Servicio>) ois.readObject();
 		}
 	}
 	
@@ -26,7 +26,7 @@ public class AdministradorServicios {
 		servicio.setDescripcion(descripcion);
 	}
 	
-	public void modificarPrecioServicio(Servicio servicio, int precio) {
+	public void modificarPrecioServicio(Servicio servicio, Integer precio) {
 		servicio.setPrecio(precio);
 	}
 	
@@ -41,4 +41,8 @@ public class AdministradorServicios {
 	public void modificarDisponibilidadServicio (Servicio servicio, HashMap<String ,ArrayList<Time>> disponibilidad) {
 		servicio.setDisponibilidad(disponibilidad);
 	}
+
+    public HashMap<String,Servicio> getInventario(){
+        return this.inventario
+    }
 }

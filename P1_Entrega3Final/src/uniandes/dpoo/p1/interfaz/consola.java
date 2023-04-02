@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.sql.Time;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.Cama;
 import uniandes.dpoo.p1.procesamiento.Hotel;
@@ -80,7 +83,13 @@ public class consola {
 				+"2.Crear una nueva habitacion\n"
 				+"3.Cargar un nuevo archivo de tarifas habitaciones\n"
 				+"4.Modificar tarifas habitaciones\n"
-				+"5.");
+				+"5.Cargar un menú para el restaurante\n"
+				+"6.Cargar un conjunto de servicios\n"
+				+"7.Modificarle el nombre a un servicio\n"
+				+"8.Modificarle el precio a un servicio\n"
+				+"9.Modificarle la decripción a un servicio\n"
+				+"10.Modificarle el cobro grupal a un servicio\n"
+				+"11.Modificarle la disponibilidad a un servicio\n");
 		
 		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
 		
@@ -96,14 +105,115 @@ public class consola {
 		else if(opcionAEjecutar == 4) {
 			ejecutarModificarTarifasHabitaciones();
 		}
+		else if(opcionAEjecutar == 5) {
+			ejecutarCargarMenu();
+		}
+
+		else if(opcionAEjecutar == 6) {
+			ejecutarCargarServicios();
+		}
+
+		else if(opcionAEjecutar == 7) {
+			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
+			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
+			Servicio servicio = inventario.get(nombreServ);
+			String nombremod = input("Ingrese el nombre nuevo para el servicio que indicó: ");
+			ejecutarModificarNombreServicio(nombremod,servicio);
+			inventario.remove(nombreserv,servicio);
+			inventario.put(nombremod,servicio);
+		}
+
+		else if(opcionAEjecutar == 8) {
+			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
+			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
+			Servicio servicio = inventario.get(nombreServ);
+			Integer preciomod = Integer.parseInt(input("Ingrese el nuevo precio para el servicio que indicó: "));
+			ejecutarModificarPrecioServicio(preciomod,servicio);
+		}
+
+		else if(opcionAEjecutar == 9) {
+			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
+			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
+			Servicio servicio = inventario.get(nombreServ);
+			String dservmod = input("Ingrese la nueva descripción para el servicio que indicó: ");
+			ejecutarModificarDescripcionServicio(dservmod,servicio);
+		}
+
+		else if(opcionAEjecutar == 10) {
+			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
+			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
+			Servicio servicio = inventario.get(nombreServ);
+			String bool = boolInput("Ingrese si el servicio que indicó va a tener cobro grupal o no (1-True, 2-False): ");
+			ejecutarModificarcGrupalServicio(bool,servicio);
+		}
+
+		else if(opcionAEjecutar == 11) {
+			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
+			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
+			Servicio servicio = inventario.get(nombreServ);
+			HashMap<String,ArrayList<Time>> dispmod = input("Ingrese la nueva disponibilidad para el servicio que indicó: ");
+			ejecutarModificarDisponibilidadServicio(dispomod,servicio);
+		}
+
 		else {System.out.println("Ingrese una opcion válida.");}
 		
-		
-		
 	}
-	
-	public String input(String mensaje)
-	{
+
+	public void mostrarMenuEmpleado() throws FileNotFoundException, ClassNotFoundException, IOException {
+		System.out.println("Como Empleado usted puede:\n"
+				+"1.Ingresar el consumo de un servicio a la cuenta de un huésped\n"
+				+"2.Ingresar el pago de un servicio consumido por un huésped\n");
+		
+		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
+
+		if (opcionAEjecutar == 1) {
+			ejecutarRegistroUsoDeServicio();
+		}
+
+		else if (opcionAEjecutar == 2){
+			ejecutarRegistrarPago();
+		}
+
+		else {System.out.println("Ingrese una opcion válida.");}
+	}
+
+	public void mostrarMenuRecepcionista() throws FileNotFoundException, ClassNotFoundException, IOException{
+		System.out.println("Como Recepcionista usted puede:\n"
+				+"1.Registrar el check in de un huésped\n"
+				+"2.Registrar el check out de un huésped\n"
+				+"3.Hacer una reservación para un huésped\n"
+				+"4.Cancelar una reservación para un huésped\n"
+				+"5.Generarle la factura final a un huésped\n");
+		
+		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
+
+		if (opcionAEjecutar == 1) {
+			ejecutarRegistroDeLlegada();
+		}
+
+		else if (opcionAEjecutar == 2){
+			ejecutarRegistroDeSalida();
+		}
+
+		else if (opcionAEjecutar == 3){
+			ejecutarReservarHabitacion();
+		}
+
+		else if (opcionAEjecutar == 4){
+			ejecutarCancelarReserva();
+		}
+
+		else if (opcionAEjecutar == 5){
+			ejecutarGenerarFactura();
+		}
+
+		else {System.out.println("Ingrese una opcion válida.");}
+	}
+
+
+//Facilitar transformar datos 
+
+	public String input(String mensaje) {
 		try
 		{
 			System.out.print(mensaje + ": ");
@@ -128,7 +238,10 @@ public class consola {
 		
 		return 1 == rta;
 	}
-	
+
+
+//Ejecutar menu administrador
+
 	public void ejecutarIniciarSesion() {
 		
 		String user = input("Ingrese su usuario");
@@ -179,8 +292,60 @@ public class consola {
 		hotel.getAdministradorHabitaciones().cargarTarifas();
 	}
 	
-	public void ejecutarModificarTarifasHabitaciones() {
-		
+	public void ejecutarModificarTarifasHabitaciones() {}
+
+	public void ejecutarCargarMenu() throws FileNotFoundException, ClassNotFoundException, IOException {
+		hotel.getAdministradorServicios().cargarMenuRestaurante();
+		System.out.println("Se ha cargado exitosamente el archivo que se encuentra en la ubicacion predeterminada.");
 	}
 
+	public void ejecutarCargarServicios() throws FileNotFoundException, ClassNotFoundException, IOException {
+		hotel.getAdministradorServicios().cargarServicios();
+		System.out.println("Se ha cargado exitosamente el archivo que se encuentra en la ubicacion predeterminada.");
+	}
+
+	public void ejecutarModificarNombreServicio(String nombre, Servicio servicio) {
+		hotel.getAdministradorServicios().modificarNombreServicio(servicio,nombre);
+		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
+	}
+
+	public void ejecutarModificarPrecioServicio(Integer precio, Servicio servicio){
+		hotel.getAdministradorServicios().modificarPrecioServicio(servicio,precio);
+		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
+	}
+
+	public void ejecutarModificarCGrupalServicio(boolean bool, Servicio servicio){
+		hotel.getAdministradorServicios().modificarCGrupalServicio(servicio,bool);
+		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
+	}
+
+	public void ejecutarModificarDescripcionServicio(String descripcion, Servicio servicio){
+		hotel.getAdministradorServicios().modificarDescripcionServicio(servicio,descripcion);
+		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
+	}
+
+	public void ejecutarModificarDisponibilidadServicio(HashMap<String,ArrayList<Servicio>> disponibilidad, Servicio servicio){
+		hotel.getAdministradorServicios().modificarDisponibilidadServicio(servicio,disponibilidad);
+		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
+	}
+
+
+//Ejecutar menu empleado
+
+	public void ejecutarRegistroUsoDeServicio(){}
+
+	public void ejecutarRegistrarPago(){}
+
+
+//Ejecutar menu recepcionista
+
+	public void ejecutarRegistroDeLlegada(){}
+
+	public void ejecutarRegistroDeSalida(){}
+
+	public void ejecutarReservarHabitacion(){}
+
+	public void ejecutarCancelarReserva(){}
+
+	public File ejecutarGenerarFactura(){}
 }
