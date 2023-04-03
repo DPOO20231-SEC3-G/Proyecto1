@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import uniandes.dpoo.p1.model.AdministradorHabitaciones;
 import uniandes.dpoo.p1.model.AdministradorServicios;
 import uniandes.dpoo.p1.model.Cama;
 import uniandes.dpoo.p1.model.Servicio;
@@ -395,8 +396,12 @@ public class consola {
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
 		String nombreServicio = input("Ingrese el nombre del servicio a consumir");
 		boolean registroPago = Boolean.valueOf(input("Ingrese si se realizó el pago del servicio (true/false)"));
+		AdministradorServicios adminServ = hotel.getAdministradorServicios();
+		HashMap<String,Servicio> inventarioServ = adminServ.getInventario();
+		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
+		HashMap<String,Servicio> inventarioRoom = adminRoom.getInventario();
 
-		hotel.gAdministradorHuespedes().registrarUsoServicio(null, null, idHabitacion, nombreServicio, registroPago);
+		hotel.gAdministradorHuespedes().registrarUsoServicio(inventarioServ, inventarioRoom, idHabitacion, nombreServicio, registroPago);
 
 		System.out.println("Se ha registrado el servicio exitosamente");
 	}
