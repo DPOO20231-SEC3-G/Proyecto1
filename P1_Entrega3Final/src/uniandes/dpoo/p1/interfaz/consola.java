@@ -65,8 +65,6 @@ public class consola {
 			}
 		}
 		
-
-		
 	}
 	
 	public void mostrarMenuInicial() {
