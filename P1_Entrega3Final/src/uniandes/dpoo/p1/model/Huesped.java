@@ -1,17 +1,15 @@
 package uniandes.dpoo.p1.model;
 
-import java.util.ArrayList;
-
 
 public class Huesped {
 
 	private String nombre;
 	private int edad;
-	private String id;
+	private Integer id;
 	private String correo;
 	private int idHabitacion;
 	
-	public Huesped(String nNombre, int nEdad, String nId, String nCorreo, int nIdHabitacion) {
+	public Huesped(String nNombre, int nEdad, Integer nId, String nCorreo, int nIdHabitacion) {
 		
 		nombre = nNombre;
 		edad = nEdad;
@@ -29,7 +27,7 @@ public class Huesped {
 		return this.edad;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return this.id;
 	}
 

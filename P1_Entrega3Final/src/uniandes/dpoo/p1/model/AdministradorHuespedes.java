@@ -35,11 +35,11 @@ public class AdministradorHuespedes {
 		
 	}
 
-    public void reservarHabitacion(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Integer> idsHuespedes) throws ParseException{
+    public void reservarHabitacion(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Huesped> listHuespedes) throws ParseException{
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");      
         Date datef = formatter.parse(date);
-        for (int i = 0; i < idsHuespedes.size(); i++){
-            Integer idHuesped = idsHuespedes.get(i);
+        for (int i = 0; i < listHuespedes.size(); i++){
+            Integer idHuesped = listHuespedes.get(i).getId();
             Huesped huesped = inventarioHuespedes.get(idHuesped);
             huesped.setIdHabitacion(idHabitacion);
             
@@ -49,7 +49,7 @@ public class AdministradorHuespedes {
             if (! reservasHabitacion.containsKey(datef)){
                 reservasHabitacion.put(datef, huesped);
                 habitacion.setReserva(reservasHabitacion);
-                habitacion.ponerOcupantes(idsHuespedes);
+                habitacion.ponerOcupantes(listHuespedes);
             }
         }
     }
