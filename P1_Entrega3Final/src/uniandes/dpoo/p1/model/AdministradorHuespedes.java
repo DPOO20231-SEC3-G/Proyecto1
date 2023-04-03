@@ -159,4 +159,8 @@ public class AdministradorHuespedes {
         }
     }
 
+    public HashMap<Integer,Huesped> getInventario() {
+        return this.inventario;
+    }
+
 }

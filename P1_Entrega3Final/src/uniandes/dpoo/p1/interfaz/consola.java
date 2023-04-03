@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.AdministradorHabitaciones;
+import uniandes.dpoo.p1.model.AdministradorHuespedes;
 import uniandes.dpoo.p1.model.AdministradorServicios;
 import uniandes.dpoo.p1.model.Cama;
 import uniandes.dpoo.p1.model.Habitacion;
@@ -472,16 +473,26 @@ public class consola {
 		}
 	}
 
-	public void ejecutarReservarHabitacion(){
+	public void ejecutarReservarHabitacion() throws ParseException{
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
 		String date = input("Ingrese la fecha en la que se realizará la reserva (dd-MM-yyyy)");
 		Integer numHuespedes = Integer.parseInt(input("Ingrese la cantidad de huespedes que se alojarán"));
 		ArrayList<Huesped> huespedes = new ArrayList<Huesped>();
+		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
+		HashMap<Integer,Habitacion> inventarioRoom = adminRoom.getInventario();
+		AdministradorHuespedes adminClient = hotel.gAdministradorHuespedes();
+		HashMap<Integer,Huesped> inventarioClient = adminClient.getInventario();
+		Integer idHuesped = null;
 
-		for (i = 0; i < numHuespedes; i++) {
-			
+
+		for (int i = 0; i < numHuespedes; i++) {
+			idHuesped = Integer.parseInt(input("Ingrese el nombre del huesped a alojar"));
+			Huesped huesped = inventarioClient.get(idHuesped);
+			huespedes.add(huesped);
 		}
 
+		hotel.gAdministradorHuespedes().reservarHabitacion(inventarioRoom, inventarioClient, idHabitacion, date, huespedes);
+		System.out.println("La habitación se ha reservado exitosamente.")
 	}
 
 	public void ejecutarCancelarReserva(){
