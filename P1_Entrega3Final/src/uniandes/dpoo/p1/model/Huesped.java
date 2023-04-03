@@ -9,7 +9,6 @@ public class Huesped {
 	private int edad;
 	private String id;
 	private String correo;
-	private ArrayList<int[]> cuenta;
 	private int idHabitacion;
 	
 	public Huesped(String nNombre, int nEdad, String nId, String nCorreo, int nIdHabitacion) {
@@ -18,7 +17,6 @@ public class Huesped {
 		edad = nEdad;
 		id = nId;
 		correo = nCorreo;
-		cuenta = new ArrayList<int[]>();
 		idHabitacion = nIdHabitacion;
 		
 	}
@@ -42,22 +40,9 @@ public class Huesped {
 	public int getIdHabitacion() {
 		return idHabitacion;
 	}
-	
-	public void agregarServicio(int codigoServicio, int valorServicio) {
-		int[] temp = {codigoServicio, valorServicio};
-		cuenta.add(temp);
-	}
-	
-	public ArrayList<int[]> getCuenta(){
-		return this.cuenta;
-	}
-	
-	public int getTotalCuenta() {
-		int totalCuenta = 0;
-		for(int[] sublista : cuenta){
-			totalCuenta += sublista[1];
-		}
-		return totalCuenta;
+
+	public void setIdHabitacion(Integer idHabitacion){
+		this.idHabitacion = idHabitacion;
 	}
 	
 }
