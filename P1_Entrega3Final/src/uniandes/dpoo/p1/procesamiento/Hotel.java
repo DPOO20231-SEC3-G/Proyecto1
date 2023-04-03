@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.AdministradorHabitaciones;
 import uniandes.dpoo.p1.model.Usuario;
+import uniandes.dpoo.p1.model.AdministradorServicios;
 
 
 public class Hotel<AdministradorHuespedes, AdministradorServicios> {
@@ -20,7 +21,7 @@ public class Hotel<AdministradorHuespedes, AdministradorServicios> {
 	
 	private AdministradorHabitaciones administradorHabitaciones;
 	
-	private AdministradorServicios administradorServicios;
+	private uniandes.dpoo.p1.model.AdministradorServicios administradorServicios;
 
 	private AdministradorHuespedes administradorHuespedes;
 	
@@ -80,7 +81,7 @@ public class Hotel<AdministradorHuespedes, AdministradorServicios> {
 		return this.administradorHuespedes;
 	}
 
-	public AdministradorServicios getAdministradorServicios() {
+	public uniandes.dpoo.p1.model.AdministradorServicios getAdministradorServicios() {
 		return this.administradorServicios;
 	}
 	

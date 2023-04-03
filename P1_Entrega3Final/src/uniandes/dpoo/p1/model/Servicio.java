@@ -56,8 +56,4 @@ public class Servicio {
 		this.cobroGrupal = nBool;
 	}
 	
-	public void setDisponibilidad (HashMap<String ,ArrayList<Time>> nDisponibilidad) {
-		this.disponibilidad = nDisponibilidad;
-	}
-	
 }

@@ -1,17 +1,11 @@
 package uniandes.dpoo.p1.model;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
+
 
 public class AdministradorServicios {
 	
@@ -24,7 +18,7 @@ public class AdministradorServicios {
 	public void cargarServicios() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Servicios.txt"))) {
-            this.inventario = (HashMap<String,Servicio>) ois.readObject();
+             this.inventario = (HashMap<String,Servicio>) ois.readObject();
 		}
 	}
 	
@@ -50,12 +44,12 @@ public class AdministradorServicios {
 	public void modificarCGrupalServicio (Servicio servicio, boolean bool) {
 		servicio.setCobroGrupal(bool);
 	}
-	
-	public void modificarDisponibilidadServicio (Servicio servicio, HashMap<String ,ArrayList<Time>> disponibilidad) {
-		servicio.setDisponibilidad(disponibilidad);
-	}
 
-    public HashMap<String,Servicio> getInventario(){
+    public HashMap<String,Servicio> getInventario() {
         return this.inventario;
     }
+
+	public HashMap<String,Servicio> getMenu() {
+		return this.menu;
+	}
 }
