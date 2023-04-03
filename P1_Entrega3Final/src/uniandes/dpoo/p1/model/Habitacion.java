@@ -16,7 +16,7 @@ public class Habitacion implements Serializable{
 	private boolean vista;
 	private ArrayList<Cama> camas;
 	private HashMap<Date, Huesped> reserva;
-	private ArrayList<Integer> ocupantes;
+	private ArrayList<Huesped> ocupantes;
 	private ArrayList<String[]> cuenta;
 	private boolean checkIn;
 	private boolean checkOut;
@@ -91,11 +91,11 @@ public class Habitacion implements Serializable{
 		return camas;
 	}
 
-	public ArrayList<Integer> getOcupantes() {
-		return ocupantes;
+	public ArrayList<Huesped> getOcupantes() {
+		return this.ocupantes;
 	}
 
-	public void ponerOcupantes(ArrayList<Integer> nOcupantes) {
+	public void ponerOcupantes(ArrayList<Huesped> nOcupantes) {
 		this.ocupantes = nOcupantes;
 	}
 	

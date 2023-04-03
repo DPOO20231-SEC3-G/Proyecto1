@@ -141,6 +141,7 @@ public class AdministradorHabitaciones {
 				System.out.println("La habitacion se ha agregado exitosamente");}
 	}
 	
+	
 	public void revisarHabitacion(Date fecha, Integer idHabitacion) {
 		Habitacion habitacionInfo = inventario.get(idHabitacion);
 		String estado = "Sin reservar";
@@ -150,7 +151,8 @@ public class AdministradorHabitaciones {
 			}
 		}
 		else { estado = "Ocupada por";
-			for ( Huesped ocupante : habitacionInfo.getOcupantes()) {
+			ArrayList<Huesped> arr = habitacionInfo.getOcupantes();
+			for ( Huesped ocupante : arr) {
 				estado += " "+ocupante.getNombre()+",";}
 			estado = estado.substring(0, estado.length()- 1);
 		}
