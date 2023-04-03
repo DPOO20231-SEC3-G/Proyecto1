@@ -14,7 +14,7 @@ import uniandes.dpoo.p1.model.Usuario;
 import uniandes.dpoo.p1.model.AdministradorServicios;
 
 
-public class Hotel<AdministradorHuespedes, AdministradorServicios> {
+public class Hotel {
 	
 	private String fichero = "./data/";
 	
