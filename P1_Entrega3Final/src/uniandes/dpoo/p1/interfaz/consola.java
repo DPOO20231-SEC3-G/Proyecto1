@@ -19,9 +19,9 @@ import uniandes.dpoo.p1.procesamiento.Hotel;
 
 public class consola {
 	
-	Hotel hotel;
+	static Hotel hotel;
 	
-	public void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException, ParseException {
+	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException, ParseException {
 		
 		boolean continuar = true;
 		
@@ -72,7 +72,7 @@ public class consola {
 		
 	}
 	
-	public void mostrarMenuInicial() {
+	public static void mostrarMenuInicial() {
 		System.out.println("Bienvenido al hotel\n\nIngrese la opcion deseada\n"+
 				"1.Iniciar sesion\n"+
 				"2.Cerrar sesion\n"+
@@ -80,7 +80,7 @@ public class consola {
 				"4.Cerrar aplicacion");
 	}
 	
-	public void mostrarMenuAdministrador() throws FileNotFoundException, ClassNotFoundException, IOException, NumberFormatException, ParseException {
+	public static void mostrarMenuAdministrador() throws FileNotFoundException, ClassNotFoundException, IOException, NumberFormatException, ParseException {
 		System.out.println("Como administrador usted puede:\n"
 				+"1.Cargar un nuevo archivo de habitaciones\n"
 				+"2.Crear una nueva habitacion\n"
@@ -161,7 +161,7 @@ public class consola {
 		
 	}
 
-	public void mostrarMenuEmpleado() throws FileNotFoundException, ClassNotFoundException, IOException {
+	public static void mostrarMenuEmpleado() throws FileNotFoundException, ClassNotFoundException, IOException {
 		System.out.println("Como Empleado usted puede:\n"
 				+"1.Ingresar el consumo de un servicio a la cuenta de un huésped\n"
 				+"2.Ingresar el pago de un servicio consumido por un huésped\n");
@@ -179,7 +179,7 @@ public class consola {
 		else {System.out.println("Ingrese una opcion válida.");}
 	}
 
-	public void mostrarMenuRecepcionista() throws FileNotFoundException, ClassNotFoundException, IOException, ParseException{
+	public static void mostrarMenuRecepcionista() throws FileNotFoundException, ClassNotFoundException, IOException, ParseException{
 		System.out.println("Como Recepcionista usted puede:\n"
 				+"1.Registrar el check in de un huésped\n"
 				+"2.Registrar el check out de un huésped\n"
@@ -219,7 +219,7 @@ public class consola {
 
 //Facilitar transformar datos 
 
-	public String input(String mensaje) {
+	public static String input(String mensaje) {
 		try
 		{
 			System.out.print(mensaje + ": ");
@@ -234,7 +234,7 @@ public class consola {
 		return null;
 	}
 	
-	public boolean boolInput(String mensaje) {
+	public static boolean boolInput(String mensaje) {
 		int rta = Integer.parseInt(input(mensaje));
 		
 		while(rta != 1 && rta != 2) {
@@ -248,7 +248,7 @@ public class consola {
 
 //Ejecutar menu administrador
 
-	public void ejecutarIniciarSesion() {
+	public static void ejecutarIniciarSesion() {
 		
 		String user = input("Ingrese su usuario");
 		String contraseña = input("Ingrese su contraseña");
@@ -256,17 +256,17 @@ public class consola {
 		hotel.iniciarSesion(user, contraseña);
 	}
 	
-	public void ejecutarCerrarSesion() {
+	public static void ejecutarCerrarSesion() {
 		
 		hotel.cerrarSesion();
 	}
 	
-	public void ejecutarCargaArchivoHabitaciones() throws FileNotFoundException, ClassNotFoundException, IOException {
+	public static void ejecutarCargaArchivoHabitaciones() throws FileNotFoundException, ClassNotFoundException, IOException {
 		hotel.getAdministradorHabitaciones().cargarHabitaciones();
 		System.out.println("Se ha cargado exitosamente el archivo que se encuentra en la ubicacion predeterminada.");
 	}
 	
-	public void ejecutarCrearHabitacion() throws NumberFormatException, IOException {
+	public static void ejecutarCrearHabitacion() throws NumberFormatException, IOException {
 		Integer nIdHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion"));
 		int nId = nIdHabitacion;
 		String nUbicacion = input("Ingrese la ubicacion");
@@ -294,11 +294,11 @@ public class consola {
 		
 	}
 	
-	public void ejecutarCargarArchivoTarifas() throws FileNotFoundException, ClassNotFoundException, IOException {
+	public static void ejecutarCargarArchivoTarifas() throws FileNotFoundException, ClassNotFoundException, IOException {
 		hotel.getAdministradorHabitaciones().cargarTarifas();
 	}
 	
-	public void ejecutarModificarTarifasHabitaciones() throws NumberFormatException, IOException, ParseException {
+	public static void ejecutarModificarTarifasHabitaciones() throws NumberFormatException, IOException, ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date fechaInicial = formatter.parse(input("Ingrese la fecha de inicial (dd/MM/yyyy)"));
 		Date fechaFinal = formatter.parse(input("Ingrese la fecha final (dd/MM/yyyy)"));
@@ -339,43 +339,43 @@ public class consola {
 		hotel.getAdministradorHabitaciones().modificarTarifaRangoFechas(nTipoHabitacion, fechaInicial, fechaFinal, dias, tarifa);
 	}
 	
-	public void ejecutarRevisarTarifas() {
+	public static void ejecutarRevisarTarifas() {
 		hotel.getAdministradorHabitaciones().revisarTarifas();
 	}
 	
-	public void ejecutarRevisarHabitacion() throws ParseException {
+	public static void ejecutarRevisarHabitacion() throws ParseException {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date fecha = formatter.parse(input("Ingrese la fecha en formato (dd/MM/yyyy)"));
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
 		hotel.getAdministradorHabitaciones().revisarHabitacion(fecha, idHabitacion);
 	}
 
-	public void ejecutarCargarMenu() throws FileNotFoundException, ClassNotFoundException, IOException {
+	public static void ejecutarCargarMenu() throws FileNotFoundException, ClassNotFoundException, IOException {
 		hotel.getAdministradorServicios().cargarMenuRestaurante();
 		System.out.println("Se ha cargado exitosamente el archivo que se encuentra en la ubicacion predeterminada.");
 	}
 
-	public void ejecutarCargarServicios() throws FileNotFoundException, ClassNotFoundException, IOException {
+	public static void ejecutarCargarServicios() throws FileNotFoundException, ClassNotFoundException, IOException {
 		hotel.getAdministradorServicios().cargarServicios();
 		System.out.println("Se ha cargado exitosamente el archivo que se encuentra en la ubicacion predeterminada.");
 	}
 
-	public void ejecutarModificarNombreServicio(String nombre, Servicio servicio) {
+	public static void ejecutarModificarNombreServicio(String nombre, Servicio servicio) {
 		hotel.getAdministradorServicios().modificarNombreServicio(servicio,nombre);
 		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
 	}
 
-	public void ejecutarModificarPrecioServicio(Integer precio, Servicio servicio){
+	public static void ejecutarModificarPrecioServicio(Integer precio, Servicio servicio){
 		hotel.getAdministradorServicios().modificarPrecioServicio(servicio,precio);
 		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
 	}
 
-	public void ejecutarModificarCGrupalServicio(boolean bool, Servicio servicio){
+	public static void ejecutarModificarCGrupalServicio(boolean bool, Servicio servicio){
 		hotel.getAdministradorServicios().modificarCGrupalServicio(servicio,bool);
 		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
 	}
 
-	public void ejecutarModificarDescripcionServicio(String descripcion, Servicio servicio){
+	public static void ejecutarModificarDescripcionServicio(String descripcion, Servicio servicio){
 		hotel.getAdministradorServicios().modificarDescripcionServicio(servicio,descripcion);
 		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
 	}
@@ -384,21 +384,21 @@ public class consola {
 
 //Ejecutar menu empleado
 
-	public void ejecutarRegistroUsoDeServicio(){}
+	public static void ejecutarRegistroUsoDeServicio(){}
 
-	public void ejecutarRegistrarPago(){}
+	public static void ejecutarRegistrarPago(){}
 
 
 //Ejecutar menu recepcionista
 
-	public void ejecutarRegistroDeLlegada(){}
+	public static void ejecutarRegistroDeLlegada(){}
 
-	public void ejecutarRegistroDeSalida(){}
+	public static void ejecutarRegistroDeSalida(){}
 
-	public void ejecutarReservarHabitacion(){}
+	public static void ejecutarReservarHabitacion(){}
 
-	public void ejecutarCancelarReserva(){}
+	public static void ejecutarCancelarReserva(){}
 
-	public File ejecutarGenerarFactura(){
+	public static File ejecutarGenerarFactura(){
 		return null;}
 }
