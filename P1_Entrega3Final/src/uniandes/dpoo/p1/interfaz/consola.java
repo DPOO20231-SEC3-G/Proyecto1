@@ -391,21 +391,56 @@ public class consola {
 
 //Ejecutar menu empleado
 
-	public void ejecutarRegistroUsoDeServicio(){}
+	public void ejecutarRegistroUsoDeServicio(){
+		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+		String nombreServicio = input("Ingrese el nombre del servicio a consumir");
+		boolean registroPago = Boolean.valueOf(input("Ingrese si se realizó el pago del servicio (true/false)"));
 
-	public void ejecutarRegistrarPago(){}
+		hotel.gAdministradorHuespedes().registrarUsoServicio(null, null, idHabitacion, nombreServicio, registroPago);
+
+		System.out.println("Se ha registrado el servicio exitosamente");
+	}
+
+	public void ejecutarRegistrarPago(){
+		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+
+		hotel.gAdministradorHuespedes().registrarPago(null, idHabitacion);
+
+		System.out.println("Se h registrdo el pago exitosamente");
+	}
 
 
 //Ejecutar menu recepcionista
 
-	public void ejecutarRegistroDeLlegada(){}
+	public void ejecutarRegistroDeLlegada(){
+		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+		hotel.gAdministradorHuespedes().registrarLlegada(null, idHabitacion);
+		System.out.println("Se ha registrado la llegada del huesped exitosamente");
+	}
 
-	public void ejecutarRegistroDeSalida(){}
+	public void ejecutarRegistroDeSalida(){
+		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+		boolean aprobacion = hotel.gAdministradorHuespedes().registrarSalida(null, idHabitacion);
 
-	public void ejecutarReservarHabitacion(){}
+		if (aprobacion){
+			System.out.println("La salida de los huespedes ha sido aprobada y registrada con exito.");
+		}
+		else{
+			System.out.println("La salida de los huespedes no ha sido aprobada porque hay una deuda pendiente.");
+			System.out.println("Por favor proceda a realizar los pagos pendientes.");
+		}
+	}
 
-	public void ejecutarCancelarReserva(){}
+	public void ejecutarReservarHabitacion(){
+		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+		
+	}
+
+	public void ejecutarCancelarReserva(){
+		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+	}
 
 	public File ejecutarGenerarFactura(){
-		return null;}
+		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+	}
 }
