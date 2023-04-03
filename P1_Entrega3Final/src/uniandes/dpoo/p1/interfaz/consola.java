@@ -15,8 +15,11 @@ import uniandes.dpoo.p1.model.AdministradorHabitaciones;
 import uniandes.dpoo.p1.model.AdministradorServicios;
 import uniandes.dpoo.p1.model.Cama;
 import uniandes.dpoo.p1.model.Habitacion;
+import uniandes.dpoo.p1.model.Huesped;
 import uniandes.dpoo.p1.model.Servicio;
 import uniandes.dpoo.p1.procesamiento.Hotel;
+import java.util.ArrayList;
+
 
 
 public class consola {
@@ -473,7 +476,13 @@ public class consola {
 	public void ejecutarReservarHabitacion(){
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
 		String date = input("Ingrese la fecha en la que se realizará la reserva (dd-MM-yyyy)");
-		ArrayList<>
+		Integer numHuespedes = Integer.parseInt(input("Ingrese la cantidad de huespedes que se alojarán"));
+		ArrayList<Huesped> huespedes = new ArrayList<Huesped>();
+
+		for (i = 0; i < numHuespedes; i++) {
+			
+		}
+
 	}
 
 	public void ejecutarCancelarReserva(){
