@@ -7,10 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.AdministradorServicios;
@@ -23,7 +21,7 @@ public class consola {
 	
 	Hotel hotel;
 	
-	public void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
+	public void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException, ParseException {
 		
 		boolean continuar = true;
 		
@@ -82,7 +80,7 @@ public class consola {
 				"4.Cerrar aplicacion");
 	}
 	
-	public void mostrarMenuAdministrador() throws FileNotFoundException, ClassNotFoundException, IOException {
+	public void mostrarMenuAdministrador() throws FileNotFoundException, ClassNotFoundException, IOException, NumberFormatException, ParseException {
 		System.out.println("Como administrador usted puede:\n"
 				+"1.Cargar un nuevo archivo de habitaciones\n"
 				+"2.Crear una nueva habitacion\n"
@@ -181,7 +179,7 @@ public class consola {
 		else {System.out.println("Ingrese una opcion válida.");}
 	}
 
-	public void mostrarMenuRecepcionista() throws FileNotFoundException, ClassNotFoundException, IOException{
+	public void mostrarMenuRecepcionista() throws FileNotFoundException, ClassNotFoundException, IOException, ParseException{
 		System.out.println("Como Recepcionista usted puede:\n"
 				+"1.Registrar el check in de un huésped\n"
 				+"2.Registrar el check out de un huésped\n"
