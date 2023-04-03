@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.AdministradorHabitaciones;
+import uniandes.dpoo.p1.model.AdministradorHuespedes;
 import uniandes.dpoo.p1.model.AdministradorServicios;
 import uniandes.dpoo.p1.model.Usuario;
 
@@ -22,6 +23,8 @@ public class Hotel {
 	private AdministradorHabitaciones administradorHabitaciones = new AdministradorHabitaciones();
 	
 	private AdministradorServicios administradorServicios = new AdministradorServicios();
+
+	private AdministradorHuespedes administradorHuespedes = new AdministradorHuespedes();
 
 	
 	private Usuario sesionIniciada;
@@ -65,6 +68,9 @@ public class Hotel {
 	public void cargarTodo() throws FileNotFoundException, ClassNotFoundException, IOException {
 		administradorHabitaciones.cargarHabitaciones();
 		cargarCuentas();
+		administradorServicios.cargarMenuRestaurante();
+		administradorServicios.cargarServicios();
+		administradorHuespedes.cargarHuespedes();
 		
 	}
 	
