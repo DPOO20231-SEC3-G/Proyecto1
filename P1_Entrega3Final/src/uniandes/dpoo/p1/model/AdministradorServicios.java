@@ -56,6 +56,6 @@ public class AdministradorServicios {
 	}
 
     public HashMap<String,Servicio> getInventario(){
-        return this.inventario
+        return this.inventario;
     }
 }

@@ -9,11 +9,10 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.AdministradorHabitaciones;
-import uniandes.dpoo.p1.model.Habitacion;
 import uniandes.dpoo.p1.model.Usuario;
 
 
-public class Hotel {
+public class Hotel<AdministradorHuespedes, AdministradorServicios> {
 	
 	private String fichero = "./data/";
 	

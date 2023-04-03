@@ -16,7 +16,7 @@ public class consola {
 	
 	Hotel hotel;
 	
-	public void main(String[] args) {
+	public void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException {
 		
 		boolean continuar = true;
 		
