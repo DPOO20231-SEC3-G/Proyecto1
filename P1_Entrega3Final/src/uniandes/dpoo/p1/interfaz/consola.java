@@ -6,7 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Date;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -91,7 +94,7 @@ public class consola {
 				+"8.Modificarle el precio a un servicio\n"
 				+"9.Modificarle la decripción a un servicio\n"
 				+"10.Modificarle el cobro grupal a un servicio\n"
-				+"12.Revisar tarifas dentro 360 dias\n");
+				+"11.Revisar tarifas dentro 360 dias\n");
 		
 		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
 		
@@ -153,7 +156,7 @@ public class consola {
 			ejecutarModificarCGrupalServicio(bool,servicio);
 		}
 
-		else if(opcionAEjecutar == 12) {
+		else if(opcionAEjecutar == 11) {
 			ejecutarRevisarTarifas();
 		}
 		else {System.out.println("Ingrese una opcion válida.");}
