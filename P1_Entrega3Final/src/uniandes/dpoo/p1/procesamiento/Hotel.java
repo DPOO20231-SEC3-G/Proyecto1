@@ -19,9 +19,9 @@ public class Hotel {
 	
 	private HashMap<String, Usuario> cuentas;
 	
-	private AdministradorHabitaciones administradorHabitaciones;
+	private AdministradorHabitaciones administradorHabitaciones = new AdministradorHabitaciones();
 	
-	private AdministradorServicios administradorServicios;
+	private AdministradorServicios administradorServicios = new AdministradorServicios();
 
 	
 	private Usuario sesionIniciada;

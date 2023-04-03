@@ -19,9 +19,9 @@ public class AdministradorHabitaciones {
 	
 	private String fichero = "./data/"; 
 	
-	private HashMap<Integer, Habitacion> inventario;
+	private HashMap<Integer, Habitacion> inventario = new HashMap<Integer, Habitacion>();
 	
-	private Calendario calendario; 
+	private Calendario calendario = new Calendario(new HashMap <Date, Integer>() , new HashMap <Date, Integer>(), new HashMap <Date, Integer>()); 
 	
 	public void cargarHabitaciones() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
