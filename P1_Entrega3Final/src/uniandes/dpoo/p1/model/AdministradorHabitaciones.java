@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,9 +19,9 @@ public class AdministradorHabitaciones {
 	
 	private String fichero = "./data/"; 
 	
-	private HashMap<Integer, Habitacion> inventario;
+	private HashMap<Integer, Habitacion> inventario = new HashMap<Integer, Habitacion>();
 	
-	private Calendario calendario; 
+	private Calendario calendario = new Calendario(new HashMap <Date, Integer>() , new HashMap <Date, Integer>(), new HashMap <Date, Integer>()); 
 	
 	public void cargarHabitaciones() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
@@ -152,6 +153,61 @@ public class AdministradorHabitaciones {
 		}
 		
 		System.out.print(habitacionInfo.toString()+"\nEstado = "+estado);
+		
+	}
+	
+	public ArrayList<Cama> agregarCamaALista(ArrayList<Cama> lista,double ancho, double alto, int numPersonas, boolean usoNinos){
+		lista.add(new Cama(ancho, alto, numPersonas, usoNinos));
+		
+		return lista;}
+		
+	public void revisarTarifas() {
+		HashMap<Date, Integer> tarifasEstandar =  this.calendario.getTarifaEstandar();
+		HashMap<Date, Integer> tarifasSuit = this.calendario.getTarifaSuit();
+		HashMap<Date, Integer> tarifasSuitDoble = this.calendario.getTarifaSuitDoble();
+		ArrayList<String> listaEstandar = new ArrayList<String>();
+		ArrayList<String> listaSuit = new ArrayList<String>();
+		ArrayList<String> listaSuitDoble = new ArrayList<String>();
+		
+		Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        
+        for (int i = 0; i < 365; i++) {
+            
+            if(!tarifasEstandar.containsKey(calendar.getTime())) {
+            	listaEstandar.add(formatter.format(calendar.getTime()));
+            }
+            if(!tarifasSuit.containsKey(calendar.getTime())) {
+            	listaSuit.add(formatter.format(calendar.getTime()));
+            }
+            if(!tarifasSuitDoble.containsKey(calendar.getTime())) {
+            	listaSuitDoble.add(formatter.format(calendar.getTime()));
+            }
+            calendar.add(Calendar.DATE, 1);
+        }
+        if (listaEstandar.isEmpty() && listaSuit.isEmpty() && listaSuitDoble.isEmpty()) {
+        	System.out.println("Tienes las tarifas establecidas para los proximos 360 dias");
+        } else {
+        	System.out.println("No ha establecido las siguientes tarifas:");
+        	if (!listaEstandar.isEmpty()) {
+        		System.out.println("Estandar:");
+        		for (String item: listaEstandar) {
+        			System.out.println(item);
+        		}
+        	}
+        	if (!listaSuit.isEmpty()) {
+        		System.out.println("Estandar:");
+        		for (String item: listaSuit) {
+        			System.out.println(item);
+        		}
+        	}
+        	if (!listaSuitDoble.isEmpty()) {
+        		System.out.println("Estandar:");
+        		for (String item: listaSuitDoble) {
+        			System.out.println(item);
+        		}
+        	}
+        }
 		
 	}
 		

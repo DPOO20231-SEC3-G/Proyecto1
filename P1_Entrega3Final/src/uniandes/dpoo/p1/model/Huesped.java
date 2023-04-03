@@ -1,5 +1,8 @@
 package uniandes.dpoo.p1.model;
 
+import java.util.ArrayList;
+
+
 public class Huesped {
 
 	private String nombre;

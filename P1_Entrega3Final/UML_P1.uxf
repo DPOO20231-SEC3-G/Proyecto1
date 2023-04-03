@@ -1,0 +1,213 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>112</x><y>712</y><w>168</w><h>56</h></coordinates><panel_attributes>Persistencia
+--
+-info: File (Serializado)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>344</y><w>184</w><h>200</h></coordinates><panel_attributes>Hotel
+--
+&lt;Controller&gt;&lt;Information Holder&gt;
+--
+-sesionIniciada : Usuario
+--
++cargarCuentas():void
++guardarCuentas(): void
++iniciarSesion():void
++cerrarSesion():void
++cargarTodo(): void
++getSesionIniciada(): Usuario
++getAdministradorDeHabitaciones():
+AdministradorHabitaciones
++getAdministradorDeServicios():
+AdministradorServicios
++getAdministradorDeHuespedes():
+AdministradorHuespedes
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>536</y><w>48</w><h>192</h></coordinates><panel_attributes>lt=&lt;-
+m2=Datos
+m1=1
+</panel_attributes><additional_attributes>10;220;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>312</x><y>192</y><w>240</w><h>136</h></coordinates><panel_attributes>AdministradorHabitaciones
+--
+&lt;Controller&gt;&lt;Information Holder&gt;
+--
+--
++cargarHabitaciones(): void
++cargarTarifas():void
++guardarHabitaciones():void
++guardarTarifas():void
++modificarTarifa():void
++modificarTarifaRangoFechas():void
++crearHabitacion():void
++revisarHabitacion():void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>336</x><y>352</y><w>216</w><h>136</h></coordinates><panel_attributes>AdministradorServicios
+--
+&lt;Controller&gt;&lt;Information Holder&gt;
+--
+--
++cargarMenuRestaurante():void
++cargarServicios():void
++modificarNombreServicio():void
++modificarPrecioServicio():void
++modificarDescripcionServicio():void
++modificarCGrupalServicio():void
++modificarDisponibilidadServicio():void
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>528</y><w>224</w><h>152</h></coordinates><panel_attributes>AdministradorHuespedes
+--
+&lt;Controller&gt;&lt;Information Holder&gt;
+--
+--
++reservarHabitacion():void
++cancelarReserva():void
++registrarPago():void
++generarFactura():File
++registroLlegada():void
++registroSalida():void
++registroUsoServicio():void
++cargarPago():void
++guardarPago():void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>216</y><w>160</w><h>168</h></coordinates><panel_attributes>lt=&lt;-
+m1= 1
+m2=
+
+
+
+
+
+
+
+Administrador
+Habitaciones</panel_attributes><additional_attributes>170;10;100;10;100;190;10;190</additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>432</y><w>160</w><h>200</h></coordinates><panel_attributes>lt=&lt;-
+m1= 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+Administrador
+Huespedes</panel_attributes><additional_attributes>180;190;70;190;70;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>376</y><w>176</w><h>64</h></coordinates><panel_attributes>lt=&lt;-
+m1=1
+
+
+AdministradorServicios
+</panel_attributes><additional_attributes>200;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>40</y><w>224</w><h>224</h></coordinates><panel_attributes>Habitacion
+--
+-id: int
+-ubicacion: str
+-numPersonas: int
+-tipoHabitacion: int
+-balcon: bool
+-cocina: bool
+-vista: bool
+-reserva: HashMap&lt;Date, Huesped&gt;
+--
++getId(): int
++getUbicacion():str
++getNumPersona(): int
++getTipoHabitacion(): int
++getBalcon(): bool
++getCocina(): bool
++getVista(): bool
++getReserva(): HashMap&lt;Date, Huesped&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>544</x><y>224</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
+m1= * Inventario</panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>976</x><y>128</y><w>168</w><h>128</h></coordinates><panel_attributes>Cama
+--
+-ancho: double
+-alto: double
+-numPersonas:int
+-usoNiños: bool
+--
++getMedidas(): [double,double]
++getNumPersonas(): int
++getUsoNiños(): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>856</x><y>224</y><w>136</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..*
+m2= Cama</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>328</x><y>0</y><w>264</w><h>136</h></coordinates><panel_attributes>Calendario
+--
+-tarifaEstandar: HashMap&lt;Date, double&gt;
+-tarifaSuite: HashMap&lt;Date, double&gt;
+-tarifaSuiteDoble: HashMap&lt;Date, double&gt;
+--
++getTarifaEstandar(): HashMap&lt;Date, double&gt;
++getTarifaSuite(): HashMap&lt;Date, double&gt;
++getTarifaSuiteDoble(): HashMap&lt;Date, double&gt;
++setTarifaEstandar(): void
++setTarifaSuite():void
++setTarifaSuiteDoble(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>128</y><w>56</w><h>80</h></coordinates><panel_attributes>lt=&lt;-
+m1= 1
+m2= Tarifas</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>680</x><y>296</y><w>384</w><h>216</h></coordinates><panel_attributes>Servicio
+--
+-nombre: str
+-precio: double
+-descripcion: str
+-cobroGrupal: bool
+-disponibilidad: HashMap&lt;Str, ArrayList&lt; ArrayList &lt;DateTime&gt; &gt; &gt;
+-
++getNombre(): str
++getPrecio(): float
++getDescripcion(): str
++getCobroGrupal(): bool
++getDisponibilidad(): HashMap&lt;Str, ArrayList&lt; ArrayList &lt;DateTime&gt; &gt; &gt;
++setNombre():void
++setPrecio(): void
++setDescripcion(): void
++setCobroGrupal(): void
++setDisponibilidad(): void
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>544</x><y>360</y><w>152</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
+m1= 1..*
+m2=Inventario</panel_attributes><additional_attributes>170;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>544</x><y>400</y><w>152</w><h>32</h></coordinates><panel_attributes>lt=-&gt;
+m2= * menu</panel_attributes><additional_attributes>10;10;170;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>632</x><y>528</y><w>176</w><h>176</h></coordinates><panel_attributes>Huesped
+--
+-nombre: str
+-edad: int
+-id: str
+-correo: str
+-cuenta: ArrayList&lt;double&gt;
+-habitacion: int
+--
++getNombre(): str
++getEdad(): int
++getId(): str
++getCorreo(): str
++getTotalCuenta(): double
++getCuenta(): ArrayList&lt;double&gt;</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>872</x><y>528</y><w>208</w><h>112</h></coordinates><panel_attributes>Grupo
+--
+-id: str
+-huespedes: ArrayList&lt;Huesped&gt;
+-habitaciones: ArrayList&lt;int&gt;
+--
++getHuespedes():ArrayList&lt;Huesped&gt;
++getHabitaciones():ArrayList&lt;int&gt;
++getIdGrupo(): int</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>800</x><y>544</y><w>88</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>536</x><y>568</y><w>112</w><h>32</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..*
+m2= Info </panel_attributes><additional_attributes>120;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>16</x><y>616</y><w>152</w><h>64</h></coordinates><panel_attributes>Usuario
+--
+-user: str
+-contraseña: str
+-rol: char</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>16</x><y>536</y><w>72</w><h>96</h></coordinates><panel_attributes>lt=&lt;-
+m1= * Cuentas</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>88</x><y>536</y><w>88</w><h>96</h></coordinates><panel_attributes>lt=&lt;-
+m1= 0..1
+m2=SesionEnCurso</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>320</y><w>24</w><h>224</h></coordinates><panel_attributes>lt=.
+</panel_attributes><additional_attributes>10;260;10;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>720</x><y>704</y><w>112</w><h>56</h></coordinates><panel_attributes>Atributo habitacion
+es el id de la 
+habitacion
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>496</x><y>480</y><w>24</w><h>64</h></coordinates><panel_attributes>lt=.
+</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>112</y><w>216</w><h>128</h></coordinates><panel_attributes>Consola
+--
+--
++mostrarMenuInicial():void
++mostrarMenuAdministrador():void
++mostrarMenuEmpleado():void
++mostarMenuRecepcionista():void
+ejecutar todas las funcionalidades de
+ los 3 menúes (no las vamos a escribir
+todas porque se extiende demasiado)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>176</x><y>128</y><w>96</w><h>248</h></coordinates><panel_attributes>lt=&lt;-
+m1=    1
+m2=   Hotel</panel_attributes><additional_attributes>10;280;70;280;70;10;50;10</additional_attributes></element></diagram>

@@ -40,6 +40,20 @@ public class Servicio {
 		return this.disponibilidad;
 	}
 	
+	public void setNombre (String nNombre) {
+		this.nombre = nNombre;
+	}
 	
+	public void setPrecio (int nPrecio) {
+		this.precio = nPrecio;
+	}
+	
+	public void setDescripcion (String ndespcripcion) {
+		this.descripcion = ndespcripcion;
+	}
+	
+	public void setCobroGrupal (boolean nBool) {
+		this.cobroGrupal = nBool;
+	}
 	
 }
