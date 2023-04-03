@@ -1,16 +1,18 @@
 package uniandes.dpoo.p1.interfaz;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.HashMap;
 
+import uniandes.dpoo.p1.model.AdministradorServicios;
 import uniandes.dpoo.p1.model.Cama;
+import uniandes.dpoo.p1.model.Servicio;
 import uniandes.dpoo.p1.procesamiento.Hotel;
+
 
 public class consola {
 	
@@ -28,7 +30,7 @@ public class consola {
 			try 
 			{
 				mostrarMenuInicial();
-				int opcionSeleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
+				Integer opcionSeleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
 				
 				if (opcionSeleccionada == 1) {
 					ejecutarIniciarSesion();
@@ -86,8 +88,7 @@ public class consola {
 				+"7.Modificarle el nombre a un servicio\n"
 				+"8.Modificarle el precio a un servicio\n"
 				+"9.Modificarle la decripción a un servicio\n"
-				+"10.Modificarle el cobro grupal a un servicio\n"
-				+"11.Modificarle la disponibilidad a un servicio\n");
+				+"10.Modificarle el cobro grupal a un servicio\n");
 		
 		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
 		
@@ -113,8 +114,9 @@ public class consola {
 
 		else if(opcionAEjecutar == 7) {
 			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
-			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
-			Servicio servicio = inventario.get(nombreServ);
+			AdministradorServicios admin = hotel.getAdministradorServicios();
+			HashMap<String,Servicio> inventario = admin.getInventario();
+			Servicio servicio = inventario.get(nombreserv);
 			String nombremod = input("Ingrese el nombre nuevo para el servicio que indicó: ");
 			ejecutarModificarNombreServicio(nombremod,servicio);
 			inventario.remove(nombreserv,servicio);
@@ -123,35 +125,31 @@ public class consola {
 
 		else if(opcionAEjecutar == 8) {
 			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
-			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
-			Servicio servicio = inventario.get(nombreServ);
+			AdministradorServicios admin = hotel.getAdministradorServicios();
+			HashMap<String,Servicio> inventario = admin.getInventario();			
+			Servicio servicio = inventario.get(nombreserv);
 			Integer preciomod = Integer.parseInt(input("Ingrese el nuevo precio para el servicio que indicó: "));
 			ejecutarModificarPrecioServicio(preciomod,servicio);
 		}
 
 		else if(opcionAEjecutar == 9) {
 			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
-			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
-			Servicio servicio = inventario.get(nombreServ);
+			AdministradorServicios admin = hotel.getAdministradorServicios();
+			HashMap<String,Servicio> inventario = admin.getInventario();			
+			Servicio servicio = inventario.get(nombreserv);
 			String dservmod = input("Ingrese la nueva descripción para el servicio que indicó: ");
 			ejecutarModificarDescripcionServicio(dservmod,servicio);
 		}
 
 		else if(opcionAEjecutar == 10) {
 			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
-			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
-			Servicio servicio = inventario.get(nombreServ);
-			String bool = boolInput("Ingrese si el servicio que indicó va a tener cobro grupal o no (1-True, 2-False): ");
-			ejecutarModificarcGrupalServicio(bool,servicio);
+			AdministradorServicios admin = hotel.getAdministradorServicios();
+			HashMap<String,Servicio> inventario = admin.getInventario();			
+			Servicio servicio = inventario.get(nombreserv);
+			boolean bool = boolInput("Ingrese si el servicio que indicó va a tener cobro grupal o no (1-True, 2-False): ");
+			ejecutarModificarCGrupalServicio(bool,servicio);
 		}
 
-		else if(opcionAEjecutar == 11) {
-			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
-			HashMap<String,Servicio> inventario = hotel.getAdministradorServicios().getInventario();
-			Servicio servicio = inventario.get(nombreServ);
-			HashMap<String,ArrayList<Time>> dispmod = input("Ingrese la nueva disponibilidad para el servicio que indicó: ");
-			ejecutarModificarDisponibilidadServicio(dispomod,servicio);
-		}
 
 		else {System.out.println("Ingrese una opcion válida.");}
 		
@@ -162,7 +160,7 @@ public class consola {
 				+"1.Ingresar el consumo de un servicio a la cuenta de un huésped\n"
 				+"2.Ingresar el pago de un servicio consumido por un huésped\n");
 		
-		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
+		Integer opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
 
 		if (opcionAEjecutar == 1) {
 			ejecutarRegistroUsoDeServicio();
@@ -322,10 +320,6 @@ public class consola {
 		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
 	}
 
-	public void ejecutarModificarDisponibilidadServicio(HashMap<String,ArrayList<Servicio>> disponibilidad, Servicio servicio){
-		hotel.getAdministradorServicios().modificarDisponibilidadServicio(servicio,disponibilidad);
-		System.out.println("Se ha modificado exitósamente el nombre del servicio solicitado");
-	}
 
 
 //Ejecutar menu empleado
@@ -345,5 +339,6 @@ public class consola {
 
 	public void ejecutarCancelarReserva(){}
 
-	public File ejecutarGenerarFactura(){}
+	public File ejecutarGenerarFactura(){
+		return null;}
 }
