@@ -4,10 +4,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.io.Serializable;
 
 import uniandes.dpoo.p1.model.Huesped;
 
-public class Files {
+public class Files extends Serializable {
 
     /**
      * @param args

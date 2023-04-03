@@ -21,16 +21,15 @@ public class AdministradorHuespedes {
 
     public void cargarHuespedes() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Huespedes.txt"))) {
-			HashMap<Integer, Huesped> read = (HashMap<Integer, Huesped>) ois.readObject();
-            this.inventario = read;
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Huespedes.dat"))) {
+			this.inventario = (HashMap<Integer, Huesped>) ois.readObject();
 		}
 	}
 
     public void guardarHuespedes() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Huespedes.data"))) {
-			oos.writeObject(inventario);
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Huespedes.dat"))) {
+			oos.writeObject(this.inventario);
 		}
 		
 	}

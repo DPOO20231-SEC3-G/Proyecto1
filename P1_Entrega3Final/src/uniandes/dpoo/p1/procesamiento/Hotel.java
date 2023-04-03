@@ -31,14 +31,14 @@ public class Hotel {
 	
 	public void cargarCuentas() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Cuentas.data"))) {
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Cuentas.dat"))) {
 			this.cuentas = (HashMap<String, Usuario>) ois.readObject();
 		}
 		
 	}
 	
 	public void guardarCuentas() throws FileNotFoundException, IOException {
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Habitaciones.data"))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Cuentas.dat"))) {
 			oos.writeObject(cuentas);
 		}
 	}
