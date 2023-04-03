@@ -28,7 +28,7 @@ public class AdministradorHuespedes {
 
     public void guardarHuespedes() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Huespedes.dat"))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Huespedes.dat"))) {
 			oos.writeObject(this.inventario);
 		}
 		
@@ -55,7 +55,7 @@ public class AdministradorHuespedes {
 
     public void cancelarReserva(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Huesped> idsHuespedes) throws ParseException{
         for (int i = 0; i < idsHuespedes.size(); i++){
-            Integer idHuesped = idsHuespedes.get(i);
+            Integer idHuesped = idsHuespedes.get(i).getId();
             Huesped huesped = inventarioHuespedes.get(idHuesped);
             huesped.setIdHabitacion(null);
 

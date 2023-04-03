@@ -25,7 +25,7 @@ public class AdministradorServicios {
 	}
 	public void guardarServicios() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Servicios.dat"))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Servicios.dat"))) {
 			oos.writeObject(this.inventario);
 		}
 		
@@ -39,7 +39,7 @@ public class AdministradorServicios {
 	
 	public void guardarMenuRestaurante() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Restaurante.dat"))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Restaurante.dat"))) {
 			oos.writeObject(this.menu);
 		}
 		

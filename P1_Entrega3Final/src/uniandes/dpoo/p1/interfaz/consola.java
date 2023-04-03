@@ -1,7 +1,6 @@
 package uniandes.dpoo.p1.interfaz;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +18,6 @@ import uniandes.dpoo.p1.model.Habitacion;
 import uniandes.dpoo.p1.model.Huesped;
 import uniandes.dpoo.p1.model.Servicio;
 import uniandes.dpoo.p1.procesamiento.Hotel;
-import java.util.ArrayList;
 
 
 public class consola {

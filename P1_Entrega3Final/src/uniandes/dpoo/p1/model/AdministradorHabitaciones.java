@@ -41,7 +41,7 @@ public class AdministradorHabitaciones {
 	
 	public void guardarHabitaciones() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Habitaciones.dat"))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Habitaciones.dat"))) {
 			oos.writeObject(this.inventario);
 		}
 		

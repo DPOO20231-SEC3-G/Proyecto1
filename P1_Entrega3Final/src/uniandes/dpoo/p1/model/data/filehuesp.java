@@ -1,19 +1,13 @@
-package uniandes.dpoo.p1.model.files;
-
+package uniandes.dpoo.p1.model.data;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.HashMap;
 import java.io.Serializable;
+import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.Huesped;
 
-public class Files extends Serializable {
-
-    /**
-     * @param args
-     * @throws IOException
-     */
+public class filehuesp implements Serializable{
     public static void main(String[] args) throws IOException{
         Huesped huesped1 = new Huesped("Andrea", 18, 1828393, "am23@gmail.com", 111);
         Huesped huesped2 = new Huesped("Pedro", 23, 1828394, "princon@gmail.com", 111);
@@ -29,13 +23,7 @@ public class Files extends Serializable {
         huespedes.put(1828386,huesped4);
         huespedes.put(1828380,huesped5);
 
-        ObjectOutputStream servicios = new ObjectOutputStream(new FileOutputStream("Huespedes.txt"));
+        ObjectOutputStream servicios = new ObjectOutputStream(new FileOutputStream("Huespedes.dat"));
         servicios.writeObject(huespedes);
         servicios.close();
-           
-        
-    }
-
-    
-
-}
+        }}
