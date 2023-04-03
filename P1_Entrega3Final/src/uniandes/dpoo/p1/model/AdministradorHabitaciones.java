@@ -214,5 +214,9 @@ public class AdministradorHabitaciones {
         }
 		
 	}
+
+	public HashMap<Integer,Habitacion> getInventario() {
+        return this.inventario;
+    }
 		
 }
