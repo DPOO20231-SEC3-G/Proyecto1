@@ -278,10 +278,10 @@ public class consola {
 		int nId = nIdHabitacion;
 		String nUbicacion = input("Ingrese la ubicacion");
 		int nNumPersonas = Integer.parseInt(input("Ingrese la capacidad maxima de la habitacion"));
-		char nTipoHabitacion = input("Ingrese el tipo de habitacion ('e' - Estandar / 's' - Suit / 'd' - Suit doble ").replaceAll(" ", "").charAt(1);
+		char nTipoHabitacion = input("Ingrese el tipo de habitacion ('e' - Estandar / 's' - Suit / 'd' - Suit doble ").replaceAll(" ", "").charAt(0);
 		while(nTipoHabitacion != 'e' && nTipoHabitacion != 's' && nTipoHabitacion != 'd') {
 			System.out.println("Caracter invalido");
-			nTipoHabitacion = input("Ingrese el tipo de habitacion ('e' - Estandar / 's' - Suit / 'd' - Suit doble ").replaceAll(" ", "").charAt(1);
+			nTipoHabitacion = input("Ingrese el tipo de habitacion ('e' - Estandar / 's' - Suit / 'd' - Suit doble ").replaceAll(" ", "").charAt(0);
 			}
 		boolean nBalcon = boolInput("Ingrese si tiene balcon (1- True/ 2- False)");
 		boolean nCocina = boolInput("Ingrese si tiene cocina (1- True/ 2- False)");
