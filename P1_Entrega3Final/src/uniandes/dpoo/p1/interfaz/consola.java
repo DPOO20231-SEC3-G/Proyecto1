@@ -12,11 +12,15 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.AdministradorHabitaciones;
+import uniandes.dpoo.p1.model.AdministradorHuespedes;
 import uniandes.dpoo.p1.model.AdministradorServicios;
 import uniandes.dpoo.p1.model.Cama;
 import uniandes.dpoo.p1.model.Habitacion;
+import uniandes.dpoo.p1.model.Huesped;
 import uniandes.dpoo.p1.model.Servicio;
 import uniandes.dpoo.p1.procesamiento.Hotel;
+import java.util.ArrayList;
+
 
 public class consola {
 	
@@ -469,14 +473,48 @@ public class consola {
 		}
 	}
 
-	public void ejecutarReservarHabitacion(){
+	public void ejecutarReservarHabitacion() throws ParseException{
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
 		String date = input("Ingrese la fecha en la que se realizará la reserva (dd-MM-yyyy)");
-		ArrayList<>
+		Integer numHuespedes = Integer.parseInt(input("Ingrese la cantidad de huespedes que se alojarán"));
+		ArrayList<Huesped> huespedes = new ArrayList<Huesped>();
+		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
+		HashMap<Integer,Habitacion> inventarioRoom = adminRoom.getInventario();
+		AdministradorHuespedes adminClient = hotel.gAdministradorHuespedes();
+		HashMap<Integer,Huesped> inventarioClient = adminClient.getInventario();
+		Integer idHuesped = null;
+
+
+		for (int i = 0; i < numHuespedes; i++) {
+			idHuesped = Integer.parseInt(input("Ingrese el nombre del huesped a alojar"));
+			Huesped huesped = inventarioClient.get(idHuesped);
+			huespedes.add(huesped);
+		}
+
+		hotel.gAdministradorHuespedes().reservarHabitacion(inventarioRoom, inventarioClient, idHabitacion, date, huespedes);
+		System.out.println("La habitación se ha reservado exitosamente.");
 	}
 
-	public void ejecutarCancelarReserva(){
+	public void ejecutarCancelarReserva() throws ParseException{
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+		String date = input("Ingrese la fecha en la que se realizará la cancelación (dd-MM-yyyy)");
+		Integer numHuespedes = Integer.parseInt(input("Ingrese la cantidad de huespedes de la cancelación"));
+		ArrayList<Huesped> huespedes = new ArrayList<Huesped>();
+		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
+		HashMap<Integer,Habitacion> inventarioRoom = adminRoom.getInventario();
+		AdministradorHuespedes adminClient = hotel.gAdministradorHuespedes();
+		HashMap<Integer,Huesped> inventarioClient = adminClient.getInventario();
+		Integer idHuesped = null;
+
+
+		for (int i = 0; i < numHuespedes; i++) {
+			idHuesped = Integer.parseInt(input("Ingrese el nombre del huesped que cancela"));
+			Huesped huesped = inventarioClient.get(idHuesped);
+			huespedes.add(huesped);
+		}
+
+		hotel.gAdministradorHuespedes().cancelarReserva(inventarioRoom, inventarioClient, idHabitacion, date, huespedes);
+		System.out.println("La habitación se ha cancelado exitosamente.");
 	}
 
 	public void ejecutarGenerarFactura() throws IOException{

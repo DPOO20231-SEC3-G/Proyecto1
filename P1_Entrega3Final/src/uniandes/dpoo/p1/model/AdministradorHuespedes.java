@@ -53,7 +53,7 @@ public class AdministradorHuespedes {
         }
     }
 
-    public void cancelarReserva(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Integer> idsHuespedes) throws ParseException{
+    public void cancelarReserva(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Huesped> idsHuespedes) throws ParseException{
         for (int i = 0; i < idsHuespedes.size(); i++){
             Integer idHuesped = idsHuespedes.get(i);
             Huesped huesped = inventarioHuespedes.get(idHuesped);
@@ -156,6 +156,10 @@ public class AdministradorHuespedes {
         }finally{
             archivo.close();
         }
+    }
+
+    public HashMap<Integer,Huesped> getInventario() {
+        return this.inventario;
     }
 
 }
