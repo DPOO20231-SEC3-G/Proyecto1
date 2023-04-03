@@ -492,7 +492,7 @@ public class consola {
 		}
 
 		hotel.gAdministradorHuespedes().reservarHabitacion(inventarioRoom, inventarioClient, idHabitacion, date, huespedes);
-		System.out.println("La habitación se ha reservado exitosamente.")
+		System.out.println("La habitación se ha reservado exitosamente.");
 	}
 
 	public void ejecutarCancelarReserva(){
