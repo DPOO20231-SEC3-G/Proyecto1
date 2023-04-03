@@ -14,6 +14,7 @@ import java.util.HashMap;
 import uniandes.dpoo.p1.model.AdministradorHabitaciones;
 import uniandes.dpoo.p1.model.AdministradorServicios;
 import uniandes.dpoo.p1.model.Cama;
+import uniandes.dpoo.p1.model.Habitacion;
 import uniandes.dpoo.p1.model.Servicio;
 import uniandes.dpoo.p1.procesamiento.Hotel;
 
@@ -399,7 +400,7 @@ public class consola {
 		AdministradorServicios adminServ = hotel.getAdministradorServicios();
 		HashMap<String,Servicio> inventarioServ = adminServ.getInventario();
 		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
-		HashMap<String,Servicio> inventarioRoom = adminRoom.getInventario();
+		HashMap<Integer,Habitacion> inventarioRoom = adminRoom.getInventario();
 
 		hotel.gAdministradorHuespedes().registrarUsoServicio(inventarioServ, inventarioRoom, idHabitacion, nombreServicio, registroPago);
 
@@ -408,8 +409,10 @@ public class consola {
 
 	public void ejecutarRegistrarPago(){
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
+		HashMap<Integer,Habitacion> inventarioRoom = adminRoom.getInventario();
 
-		hotel.gAdministradorHuespedes().registrarPago(null, idHabitacion);
+		hotel.gAdministradorHuespedes().registrarPago(inventarioRoom, idHabitacion);
 
 		System.out.println("Se h registrdo el pago exitosamente");
 	}
@@ -419,13 +422,17 @@ public class consola {
 
 	public void ejecutarRegistroDeLlegada(){
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
-		hotel.gAdministradorHuespedes().registrarLlegada(null, idHabitacion);
+		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
+		HashMap<Integer,Habitacion> inventarioRoom = adminRoom.getInventario();
+		hotel.gAdministradorHuespedes().registrarLlegada(inventarioRoom, idHabitacion);
 		System.out.println("Se ha registrado la llegada del huesped exitosamente");
 	}
 
 	public void ejecutarRegistroDeSalida(){
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
-		boolean aprobacion = hotel.gAdministradorHuespedes().registrarSalida(null, idHabitacion);
+		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
+		HashMap<Integer,Habitacion> inventarioRoom = adminRoom.getInventario();
+		boolean aprobacion = hotel.gAdministradorHuespedes().registrarSalida(inventarioRoom, idHabitacion);
 
 		if (aprobacion){
 			System.out.println("La salida de los huespedes ha sido aprobada y registrada con exito.");
@@ -448,7 +455,9 @@ public class consola {
 
 	public void ejecutarGenerarFactura() throws IOException{
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
-		hotel.gAdministradorHuespedes().nuevaFactura(null, idHabitacion);
+		AdministradorHabitaciones adminRoom = hotel.getAdministradorHabitaciones();
+		HashMap<Integer,Habitacion> inventarioRoom = adminRoom.getInventario();
+		hotel.gAdministradorHuespedes().nuevaFactura(inventarioRoom, idHabitacion);
 		System.out.println("La factura se ha generado con exito");
 	}
 }
