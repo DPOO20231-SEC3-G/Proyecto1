@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.AdministradorServicios;
@@ -88,7 +90,8 @@ public class consola {
 				+"7.Modificarle el nombre a un servicio\n"
 				+"8.Modificarle el precio a un servicio\n"
 				+"9.Modificarle la decripción a un servicio\n"
-				+"10.Modificarle el cobro grupal a un servicio\n");
+				+"10.Modificarle el cobro grupal a un servicio\n"
+				+"12.Revisar tarifas dentro 360 dias\n");
 		
 		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
 		
@@ -150,7 +153,9 @@ public class consola {
 			ejecutarModificarCGrupalServicio(bool,servicio);
 		}
 
-
+		else if(opcionAEjecutar == 12) {
+			ejecutarRevisarTarifas();
+		}
 		else {System.out.println("Ingrese una opcion válida.");}
 		
 	}
@@ -179,7 +184,8 @@ public class consola {
 				+"2.Registrar el check out de un huésped\n"
 				+"3.Hacer una reservación para un huésped\n"
 				+"4.Cancelar una reservación para un huésped\n"
-				+"5.Generarle la factura final a un huésped\n");
+				+"5.Generarle la factura final a un huésped\n"
+				+"6.Revisar habitacion para cierta fecha\n");
 		
 		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
 
@@ -201,6 +207,9 @@ public class consola {
 
 		else if (opcionAEjecutar == 5){
 			ejecutarGenerarFactura();
+		}
+		else if (opcionAEjecutar == 6) {
+			ejecutarRevisarHabitacion();
 		}
 
 		else {System.out.println("Ingrese una opcion válida.");}
@@ -288,7 +297,57 @@ public class consola {
 		hotel.getAdministradorHabitaciones().cargarTarifas();
 	}
 	
-	public void ejecutarModificarTarifasHabitaciones() {}
+	public void ejecutarModificarTarifasHabitaciones() throws NumberFormatException, IOException, ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fechaInicial = formatter.parse(input("Ingrese la fecha de inicial (dd/MM/yyyy)"));
+		Date fechaFinal = formatter.parse(input("Ingrese la fecha final (dd/MM/yyyy)"));
+		char nTipoHabitacion = input("Ingrese el tipo de habitacion ('e' - Estandar / 's' - Suit / 'd' - Suit doble ").replaceAll(" ", "").charAt(1);
+		while(nTipoHabitacion != 'e' && nTipoHabitacion != 's' && nTipoHabitacion != 'd') {
+			System.out.println("Caracter invalido");
+			nTipoHabitacion = input("Ingrese el tipo de habitacion ('e' - Estandar / 's' - Suit / 'd' - Suit doble ").replaceAll(" ", "").charAt(1);
+			}
+		ArrayList<String> dias = new ArrayList<String>();
+		while (dias.isEmpty()) {
+			if(boolInput("Desean que la tarifa se aplique los LUNES dentro del rango? (1 - True / 2 - False)")) {
+				dias.add("lunes");
+			}
+			if(boolInput("Desean que la tarifa se aplique los MARTES dentro del rango? (1 - True / 2 - False)")) {
+				dias.add("martes");
+			}
+			if(boolInput("Desean que la tarifa se aplique los MIERCOLES dentro del rango? (1 - True / 2 - False)")) {
+				dias.add("miercoles");
+			}
+			if(boolInput("Desean que la tarifa se aplique los JUEVES dentro del rango? (1 - True / 2 - False)")) {
+				dias.add("jueves");
+			}
+			if(boolInput("Desean que la tarifa se aplique los VIERNES dentro del rango? (1 - True / 2 - False)")) {
+				dias.add("viernes");
+			}
+			if(boolInput("Desean que la tarifa se aplique los SABADO dentro del rango? (1 - True / 2 - False)")) {
+				dias.add("sabado");
+			}
+			if(boolInput("Desean que la tarifa se aplique los DOMINGO dentro del rango? (1 - True / 2 - False)")) {
+				dias.add("domingo");
+			}
+			if(dias.isEmpty()) {
+				System.out.println("No ha ingresado ningun dia en su rango. Se procedera a preguntar otra vez.");
+			}
+		}
+		Integer tarifa = Integer.parseInt(input("Ingrese la tarifa a colocar"));
+		
+		hotel.getAdministradorHabitaciones().modificarTarifaRangoFechas(nTipoHabitacion, fechaInicial, fechaFinal, dias, tarifa);
+	}
+	
+	public void ejecutarRevisarTarifas() {
+		hotel.getAdministradorHabitaciones().revisarTarifas();
+	}
+	
+	public void ejecutarRevisarHabitacion() throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		Date fecha = formatter.parse(input("Ingrese la fecha en formato (dd/MM/yyyy)"));
+		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+		hotel.getAdministradorHabitaciones().revisarHabitacion(fecha, idHabitacion);
+	}
 
 	public void ejecutarCargarMenu() throws FileNotFoundException, ClassNotFoundException, IOException {
 		hotel.getAdministradorServicios().cargarMenuRestaurante();
