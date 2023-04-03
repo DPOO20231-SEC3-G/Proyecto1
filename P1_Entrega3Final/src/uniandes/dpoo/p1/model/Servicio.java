@@ -1,10 +1,11 @@
 package uniandes.dpoo.p1.model;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Servicio {
+public class Servicio implements Serializable{
 	private String nombre;
 	private int precio;
 	private String descripcion;

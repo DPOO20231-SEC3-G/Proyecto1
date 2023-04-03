@@ -21,7 +21,6 @@ import uniandes.dpoo.p1.procesamiento.Hotel;
 import java.util.ArrayList;
 
 
-
 public class consola {
 	
 	private Hotel hotel = new Hotel ();

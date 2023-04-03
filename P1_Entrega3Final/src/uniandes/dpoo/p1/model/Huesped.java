@@ -1,7 +1,8 @@
 package uniandes.dpoo.p1.model;
 
+import java.io.Serializable;
 
-public class Huesped {
+public class Huesped implements Serializable{
 
 	private String nombre;
 	private int edad;
