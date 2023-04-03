@@ -1,14 +1,11 @@
-package uniandes.dpoo.p1.model.data;
+package uniandes.dpoo.p1.model.files;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import uniandes.dpoo.p1.model.Huesped;
-import uniandes.dpoo.p1.model.Servicio;
 
 public class Files {
 
