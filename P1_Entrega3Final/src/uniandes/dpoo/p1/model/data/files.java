@@ -1,26 +1,29 @@
-package uniandes.dpoo.p1.model;
+package uniandes.dpoo.p1.model.data;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 
-public class files{
-    public void crearFileServicios(){
-        HashMap disp1 = new HashMap();
-        HashMap disp2 = new HashMap();
-        ArrayList horas = new ArrayList();
-        ArrayList horas2 = new ArrayList();
-        ArrayList horas3 = new ArrayList();
-        ArrayList horas4 = new ArrayList();
+import uniandes.dpoo.p1.model.Servicio;
+
+class files implements Serializable{
+
+    /**
+     * @param args
+     * @throws IOException
+     */
+    public static void main(String[] args) throws IOException{
+        HashMap<String,ArrayList<Time>> disp1 = new HashMap<String,ArrayList<Time>>();
+        HashMap<String,ArrayList<Time>> disp2 = new HashMap<String,ArrayList<Time>>();
+        ArrayList<Time> horas = new ArrayList<Time>();
+        ArrayList<Time> horas2 = new ArrayList<Time>();
+        ArrayList<Time> horas3 = new ArrayList<Time>();
+        ArrayList<Time> horas4 = new ArrayList<Time>();
 
         horas2.add(new Time(8,30,0));
         horas2.add(new Time(9,30,0));
@@ -64,74 +67,70 @@ public class files{
         Servicio servicio1 = new Servicio("Masaje",100,"Masaje relajante de cuerpo completo para una persona.",false,disp1);
         Servicio servicio2 = new Servicio("Montar a caballo",50,"Divertida cabalgata de 1 hora por nuestros boques y prados.",true,disp1) ;
         Servicio servicio3 = new Servicio("Rumba Nocturna",75,"Divertida festa nocturna únicamente para mayores de edad, con shows exclusivos que te llevaran a otro mundo.",false,disp2);
-        HashMap serviciosfull = new HashMap();
+        HashMap<String,Servicio> serviciosfull = new HashMap<String,Servicio>();
         serviciosfull.put("Masaje",servicio1);
         serviciosfull.put("Montar a caballo",servicio2);
         serviciosfull.put("Rumba Nocturna",servicio3);
 
         ObjectOutputStream servicios = new ObjectOutputStream(new FileOutputStream("Servicios.txt"));
-        servicios.writeObject(serviciosfull)
-        servicios.close()
-            }
-    public void crearFileMenu(){
-        HashMap disp1 = new HashMap();
-        HashMap disp2 = new HashMap();
-        HashMap disp3 = new HashMap();
+        servicios.writeObject(serviciosfull);
+        servicios.close();
+            
+        HashMap<String,ArrayList<Time>> disp3 = new HashMap<String,ArrayList<Time>>();
+        HashMap<String,ArrayList<Time>> disp4 = new HashMap<String,ArrayList<Time>>();
+        HashMap<String,ArrayList<Time>> disp5 = new HashMap<String,ArrayList<Time>>();
 
-        ArrayList horas1 = new ArrayList();
-        ArrayList horas2 = new ArrayList();
-        ArrayList horas3 = new ArrayList();
+        ArrayList<Time> horas5 = new ArrayList<Time>();
+        ArrayList<Time> horas6 = new ArrayList<Time>();
+        ArrayList<Time> horas7 = new ArrayList<Time>();
 
-        horas1.add(new Time(8,30,0));
-        horas1.add(new Time(9,30,0));
-        horas1.add(new Time(10,30,0));
-        horas2.add(new Time(12,0,0));
-        horas2.add(new Time(1,0,0));
-        horas2.add(new Time(2,0,0));
-        horas3.add(new Time(18,0,0));
-        horas3.add(new Time(19,0,0));
-        horas3.add(new Time(20,0,0));
+        horas5.add(new Time(8,30,0));
+        horas5.add(new Time(9,30,0));
+        horas5.add(new Time(10,30,0));
+        horas6.add(new Time(12,0,0));
+        horas6.add(new Time(1,0,0));
+        horas6.add(new Time(2,0,0));
+        horas7.add(new Time(18,0,0));
+        horas7.add(new Time(19,0,0));
+        horas7.add(new Time(20,0,0));
 
-        disp1.put("Lunes",horas1);
-        disp1.put("Martes",horas1);
-        disp1.put("Miercoles",horas1);
-        disp1.put("Jueves",horas1);
-        disp1.put("Viernes",horas1);
-        disp1.put("Sabado",horas1);
-        disp1.put("Domingo",horas1);
-        disp2.put("Viernes",horas2);
-        disp2.put("Sabado",horas2);
-        disp2.put("Domingo",horas2);
-        disp2.put("Lunes",horas2);
-        disp2.put("Martes",horas2);
-        disp2.put("Miercoles",horas2);
-        disp2.put("Jueves",horas2);
-        disp3.put("Lunes",horas3);
-        disp3.put("Martes",horas3);
-        disp3.put("Miercoles",horas3);
-        disp3.put("Jueves",horas3);
-        disp3.put("Viernes",horas3);
-        disp3.put("Sabado",horas3);
-        disp3.put("Domingo",horas3);
+        disp3.put("Lunes",horas5);
+        disp3.put("Martes",horas5);
+        disp3.put("Miercoles",horas5);
+        disp3.put("Jueves",horas5);
+        disp3.put("Viernes",horas5);
+        disp3.put("Sabado",horas5);
+        disp3.put("Domingo",horas5);
+        disp4.put("Viernes",horas6);
+        disp4.put("Sabado",horas6);
+        disp4.put("Domingo",horas6);
+        disp4.put("Lunes",horas6);
+        disp4.put("Martes",horas6);
+        disp4.put("Miercoles",horas6);
+        disp4.put("Jueves",horas6);
+        disp5.put("Lunes",horas7);
+        disp5.put("Martes",horas7);
+        disp5.put("Miercoles",horas7);
+        disp5.put("Jueves",horas7);
+        disp5.put("Viernes",horas7);
+        disp5.put("Sabado",horas7);
+        disp5.put("Domingo",horas7);
         
-        Servicio servicio1 = new Servicio("Pancakes",20,"Porción de 4 deliciosos pancakes acompañados de fresas y miel de maple.",false,disp1);
-        Servicio servicio2 = new Servicio("Bandeja Paisa",45,"Porción del plato típico colombiano de frijoles con platano maduro, arroz, chicharron, dos arepitas pequeñas, una porción de hogao y carne molida.",false,disp2) ;
-        Servicio servicio3 = new Servicio("Sushi",35,"Porción de 10 rollos de sushi de camarón son queso crema y aguacate acompañados con salsa de sye, teriyaki y wasabi.",false,disp3);
-        HashMap serviciosfull = new HashMap();
+        Servicio servicio4 = new Servicio("Pancakes",20,"Porción de 4 deliciosos pancakes acompañados de fresas y miel de maple.",false,disp1);
+        Servicio servicio5 = new Servicio("Bandeja Paisa",45,"Porción del plato típico colombiano de frijoles con platano maduro, arroz, chicharron, dos arepitas pequeñas, una porción de hogao y carne molida.",false,disp2) ;
+        Servicio servicio6 = new Servicio("Sushi",35,"Porción de 10 rollos de sushi de camarón son queso crema y aguacate acompañados con salsa de sye, teriyaki y wasabi.",false,disp3);
+        HashMap<String,Servicio> serviciosfull2 = new HashMap<String,Servicio>();
 
-        serviciosfull.put("Pancakes",servicio1);
-        serviciosfull.put("Bandeja Paisa",servicio2);
-        serviciosfull.put("Sushi",servicio3);
+        serviciosfull2.put("Pancakes",servicio4);
+        serviciosfull2.put("Bandeja Paisa",servicio5);
+        serviciosfull2.put("Sushi",servicio6);
 
-        ObjectOutputStream servicios = new ObjectOutputStream(new FileOutputStream("Restaurante.txt"));
-        servicios.writeObject(serviciosfull)
-        servicios.close()
+        ObjectOutputStream servicioss = new ObjectOutputStream(new FileOutputStream("Restaurante.txt"));
+        servicioss.writeObject(serviciosfull2);
+        servicioss.close();
     }
 
-    public static void main(String[] args){
-        crearFileMenu();
-        crearFileServicios();
-    }
-
+    
 
 }
+
