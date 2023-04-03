@@ -1,6 +1,7 @@
 package uniandes.dpoo.p1.model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -25,29 +26,31 @@ public class AdministradorHabitaciones {
 	
 	public void cargarHabitaciones() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Habitaciones.data"))) {
+		
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Habitaciones.dat"))) {
 			this.inventario = (HashMap<Integer, Habitacion>) ois.readObject();
 		}
 	}
 	
 	public void cargarTarifas()throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Tarifa.data"))) {
+		
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Tarifa.dat"))) {
 			this.calendario = (Calendario) ois.readObject();
 		}
 	}
 	
 	public void guardarHabitaciones() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Habitaciones.data"))) {
-			oos.writeObject(inventario);
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Habitaciones.dat"))) {
+			oos.writeObject(this.inventario);
 		}
 		
 	}
 	
 	public void guardarTarifas() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Tarifa.data"))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Tarifa.dat"))) {
 			oos.writeObject(calendario);
 			
 		}
@@ -130,7 +133,7 @@ public class AdministradorHabitaciones {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			int opcion = Integer.parseInt(reader.readLine());
 			if (opcion == 0) {
-				inventario.put(idHabitacion, nuevaHabitacion);
+				this.inventario.put(idHabitacion, nuevaHabitacion);
 				System.out.println("La habitacion se ha agregado exitosamente");
 			}else {System.out.println("La habitacion no se ha agregado exitosamente");}
 		}
