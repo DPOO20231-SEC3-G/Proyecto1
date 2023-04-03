@@ -19,29 +19,27 @@ public class AdministradorServicios {
 	
 	public void cargarServicios() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Servicios.txt"))) {
-			HashMap<String,Servicio> read = (HashMap<String,Servicio>) ois.readObject();
-			this.inventario = read;
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Servicios.dat"))) {
+			this.inventario = (HashMap<String,Servicio>) ois.readObject();
 		}
 	}
 	public void guardarServicios() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Servicios.txt"))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Servicios.dat"))) {
 			oos.writeObject(this.inventario);
 		}
 		
 	}
 	public void cargarMenuRestaurante() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
-		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Restaurante.txt"))) {
-			HashMap<String,Servicio> read = (HashMap<String,Servicio>) ois.readObject();
-			this.menu = read;
+		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Restaurante.dat"))) {
+			this.menu = (HashMap<String,Servicio>) ois.readObject();
 		}
 	}
 	
 	public void guardarMenuRestaurante() throws FileNotFoundException, IOException {
 		
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("Restaurante.txt"))) {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero+"Restaurante.dat"))) {
 			oos.writeObject(this.menu);
 		}
 		
