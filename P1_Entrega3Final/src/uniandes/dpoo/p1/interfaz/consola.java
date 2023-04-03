@@ -16,7 +16,6 @@ import uniandes.dpoo.p1.model.Cama;
 import uniandes.dpoo.p1.model.Servicio;
 import uniandes.dpoo.p1.procesamiento.Hotel;
 
-
 public class consola {
 	
 	private Hotel hotel = new Hotel ();
