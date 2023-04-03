@@ -26,7 +26,8 @@ public class AdministradorHabitaciones {
 	public void cargarHabitaciones() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Habitaciones.data"))) {
-			this.inventario = (HashMap<Integer, Habitacion>) ois.readObject();
+			HashMap<Integer, Habitacion> read = (HashMap<Integer, Habitacion>) ois.readObject();
+			this.inventario = read;
 		}
 	}
 	

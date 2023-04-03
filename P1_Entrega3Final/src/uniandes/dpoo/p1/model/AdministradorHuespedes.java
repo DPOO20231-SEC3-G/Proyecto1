@@ -1,19 +1,18 @@
 package uniandes.dpoo.p1.model;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class AdministradorHuespedes {
     private String fichero = "./data/";
@@ -23,7 +22,8 @@ public class AdministradorHuespedes {
     public void cargarHuespedes() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Huespedes.data"))) {
-			this.inventario = (HashMap<Integer, Huesped>) ois.readObject();
+			HashMap<Integer, Huesped> read = (HashMap<Integer, Huesped>) ois.readObject();
+            this.inventario = read;
 		}
 	}
 
@@ -35,8 +35,9 @@ public class AdministradorHuespedes {
 		
 	}
 
-    public void reservarHabitacion(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Integer> idsHuespedes){
-
+    public void reservarHabitacion(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Integer> idsHuespedes) throws ParseException{
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");      
+        Date datef = formatter.parse(date);
         for (int i = 0; i < idsHuespedes.size(); i++){
             Integer idHuesped = idsHuespedes.get(i);
             Huesped huesped = inventarioHuespedes.get(idHuesped);
@@ -45,15 +46,15 @@ public class AdministradorHuespedes {
             Habitacion habitacion = inventarioHabitaciones.get(idHabitacion);
             HashMap<Date, Huesped> reservasHabitacion = habitacion.getReserva();
 
-            if (! reservasHabitacion.containsKey(date)){
-                reservasHabitacion.put(date, huesped);
+            if (! reservasHabitacion.containsKey(datef)){
+                reservasHabitacion.put(datef, huesped);
                 habitacion.setReserva(reservasHabitacion);
                 habitacion.ponerOcupantes(idsHuespedes);
             }
         }
     }
 
-    public void cancelarReserva(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Integer> idsHuespedes){
+    public void cancelarReserva(HashMap<Integer, Habitacion> inventarioHabitaciones, HashMap<Integer, Huesped> inventarioHuespedes, Integer idHabitacion, String date, ArrayList<Integer> idsHuespedes) throws ParseException{
         for (int i = 0; i < idsHuespedes.size(); i++){
             Integer idHuesped = idsHuespedes.get(i);
             Huesped huesped = inventarioHuespedes.get(idHuesped);
@@ -62,9 +63,10 @@ public class AdministradorHuespedes {
             Habitacion habitacion = inventarioHabitaciones.get(idHabitacion);
             habitacion.ponerOcupantes(null);
             HashMap<Date, Huesped> reservasHabitacion = habitacion.getReserva();
-
-            if (reservasHabitacion.containsKey(date)){
-                reservasHabitacion.put(date, null);
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");      
+            Date datef = formatter.parse(date);
+            if (reservasHabitacion.containsKey(datef)){
+                reservasHabitacion.remove(datef);
                 habitacion.setReserva(reservasHabitacion);
             }
         }
