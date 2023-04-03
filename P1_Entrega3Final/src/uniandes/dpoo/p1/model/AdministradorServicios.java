@@ -18,14 +18,16 @@ public class AdministradorServicios {
 	public void cargarServicios() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Servicios.txt"))) {
-             this.inventario = (HashMap<String,Servicio>) ois.readObject();
+			HashMap<String,Servicio> read = (HashMap<String,Servicio>) ois.readObject();
+			this.inventario = read;
 		}
 	}
 	
 	public void cargarMenuRestaurante() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichero+"Restaurante.txt"))) {
-			this.inventario = (HashMap<String,Servicio>) ois.readObject();
+			HashMap<String,Servicio> read = (HashMap<String,Servicio>) ois.readObject();
+			this.menu = read;
 		}
 	}
 	
