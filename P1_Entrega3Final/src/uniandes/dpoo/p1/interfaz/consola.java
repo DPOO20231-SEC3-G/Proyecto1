@@ -66,6 +66,11 @@ public class consola {
 				}
 				else if (opcionSeleccionada == 4) {
 					System.out.println("Saliendo de la aplicación ...");
+					hotel.gAdministradorHuespedes().guardarHuespedes();
+					hotel.getAdministradorHabitaciones().guardarHabitaciones();
+					hotel.getAdministradorHabitaciones().guardarTarifas();
+					hotel.getAdministradorServicios().guardarMenuRestaurante();
+					hotel.getAdministradorServicios().guardarServicios();
 					continuar = false;
 				}
 				else{
@@ -93,13 +98,11 @@ public class consola {
 				+"2.Crear una nueva habitacion\n"
 				+"3.Cargar un nuevo archivo de tarifas habitaciones\n"
 				+"4.Modificar tarifas habitaciones\n"
-				+"5.Cargar un menú para el restaurante\n"
-				+"6.Cargar un conjunto de servicios\n"
-				+"7.Modificarle el nombre a un servicio\n"
-				+"8.Modificarle el precio a un servicio\n"
-				+"9.Modificarle la decripción a un servicio\n"
-				+"10.Modificarle el cobro grupal a un servicio\n"
-				+"11.Revisar tarifas dentro 360 dias\n");
+				+"5.Modificarle el nombre a un servicio\n"
+				+"6.Modificarle el precio a un servicio\n"
+				+"7.Modificarle la decripción a un servicio\n"
+				+"8.Modificarle el cobro grupal a un servicio\n"
+				+"9.Revisar tarifas dentro 360 dias\n");
 		
 		int opcionAEjecutar = Integer.parseInt(input("Ingrese la opcion, por favor"));
 		
@@ -115,44 +118,68 @@ public class consola {
 		else if(opcionAEjecutar == 4) {
 			ejecutarModificarTarifasHabitaciones();
 		}
-		else if(opcionAEjecutar == 5) {
-			ejecutarCargarMenu();
-		}
 
-		else if(opcionAEjecutar == 6) {
-			ejecutarCargarServicios();
+		else if(opcionAEjecutar == 5) {
+			String som = input("Ingrese si desea modificar un servicio o producto de menú (sv ó mn) :");
+			String nombreserv = input("Ingrese el nombre del servicio o producto de menú que desea modificar: ");
+			AdministradorServicios admin = hotel.getAdministradorServicios();
+			if (som == "sv") {
+				HashMap<String,Servicio> inventario = admin.getInventario();
+				Servicio servicio = inventario.get(nombreserv);
+				String dservmod = input("Ingrese el nuevo nombre para el servicio o producto de menú que indicó: ");
+				ejecutarModificarNombreServicio(dservmod,servicio);
+				inventario.remove(nombreserv,servicio);
+				inventario.put(dservmod,servicio);
+			}
+			else if (som == "mn") {
+				HashMap<String,Servicio> inventario = admin.getMenu();
+				Servicio servicio = inventario.get(nombreserv);
+				String dservmod = input("Ingrese el nuevo nombre para el servicio o producto de menú que indicó: ");
+				ejecutarModificarNombreServicio(dservmod,servicio);
+				inventario.remove(nombreserv,servicio);
+				inventario.put(dservmod,servicio);
+			}
+			else {System.out.println("Ingrese una opcion válida.");}
+
 		}
+	
+		else if(opcionAEjecutar == 6) {
+			String som = input("Ingrese si desea modificar un servicio o producto de menú (sv ó mn) :");
+			String nombreserv = input("Ingrese el nombre del servicio o producto de menú que desea modificar: ");
+			AdministradorServicios admin = hotel.getAdministradorServicios();
+			if (som == "sv") {
+				HashMap<String,Servicio> inventario = admin.getInventario();
+				Servicio servicio = inventario.get(nombreserv);
+				Integer dservmod = Integer.parseInt( input("Ingrese el nuevo precio para el servicio o producto de menú que indicó: "));
+				ejecutarModificarPrecioServicio(dservmod,servicio);}
+			else if (som == "mn") {
+				HashMap<String,Servicio> inventario = admin.getMenu();
+				Servicio servicio = inventario.get(nombreserv);
+				Integer dservmod = Integer.parseInt(input("Ingrese el nuevo precio para el servicio o producto de menú que indicó: "));
+				ejecutarModificarPrecioServicio(dservmod,servicio);}
+			else {System.out.println("Ingrese una opcion válida.");}
+		}
+		
 
 		else if(opcionAEjecutar == 7) {
-			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
+			String som = input("Ingrese si desea modificar un servicio o producto de menú (sv ó mn) :");
+			String nombreserv = input("Ingrese el nombre del servicio o producto de menú que desea modificar: ");
 			AdministradorServicios admin = hotel.getAdministradorServicios();
-			HashMap<String,Servicio> inventario = admin.getInventario();
-			Servicio servicio = inventario.get(nombreserv);
-			String nombremod = input("Ingrese el nombre nuevo para el servicio que indicó: ");
-			ejecutarModificarNombreServicio(nombremod,servicio);
-			inventario.remove(nombreserv,servicio);
-			inventario.put(nombremod,servicio);
+				if (som == "sv") {
+					HashMap<String,Servicio> inventario = admin.getInventario();
+					Servicio servicio = inventario.get(nombreserv);
+					String dservmod = input("Ingrese la nueva descripción para el servicio o producto de menú que indicó: ");
+					ejecutarModificarDescripcionServicio(dservmod,servicio);}
+				else if (som == "mn") {
+					HashMap<String,Servicio> inventario = admin.getMenu();
+					Servicio servicio = inventario.get(nombreserv);
+					String dservmod = input("Ingrese la nueva descripción para el servicio o producto de menú que indicó: ");
+					ejecutarModificarDescripcionServicio(dservmod,servicio);}
+				else {System.out.println("Ingrese una opcion válida.");}			
+		
 		}
 
 		else if(opcionAEjecutar == 8) {
-			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
-			AdministradorServicios admin = hotel.getAdministradorServicios();
-			HashMap<String,Servicio> inventario = admin.getInventario();			
-			Servicio servicio = inventario.get(nombreserv);
-			Integer preciomod = Integer.parseInt(input("Ingrese el nuevo precio para el servicio que indicó: "));
-			ejecutarModificarPrecioServicio(preciomod,servicio);
-		}
-
-		else if(opcionAEjecutar == 9) {
-			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
-			AdministradorServicios admin = hotel.getAdministradorServicios();
-			HashMap<String,Servicio> inventario = admin.getInventario();			
-			Servicio servicio = inventario.get(nombreserv);
-			String dservmod = input("Ingrese la nueva descripción para el servicio que indicó: ");
-			ejecutarModificarDescripcionServicio(dservmod,servicio);
-		}
-
-		else if(opcionAEjecutar == 10) {
 			String nombreserv = input("Ingrese el nombre del servicio que desea modificar: ");
 			AdministradorServicios admin = hotel.getAdministradorServicios();
 			HashMap<String,Servicio> inventario = admin.getInventario();			
@@ -161,7 +188,7 @@ public class consola {
 			ejecutarModificarCGrupalServicio(bool,servicio);
 		}
 
-		else if(opcionAEjecutar == 11) {
+		else if(opcionAEjecutar == 9) {
 			ejecutarRevisarTarifas();
 		}
 		else {System.out.println("Ingrese una opcion válida.");}
