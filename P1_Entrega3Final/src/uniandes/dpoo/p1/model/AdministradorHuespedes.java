@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class AdministradorHuespedes {
     private String fichero = "./data/";
@@ -117,6 +119,42 @@ public class AdministradorHuespedes {
         return aprobacion;
     }
 
-    
+    public void nuevaFactura(HashMap<Integer, Habitacion> inventarioHabitaciones, Integer idHabitacion) throws IOException{
+        Habitacion habitacion = inventarioHabitaciones.get(idHabitacion);
+        ArrayList<String[]> cuenta = habitacion.getCuenta();
+        
+        FileWriter archivo = null;
+        PrintWriter escritor = null;
+
+        try{
+            archivo = new FileWriter("./data/factura.txt");
+            escritor = new PrintWriter(archivo);
+            Integer total = 0;
+        
+            escritor.print("              ");
+            escritor.println("Factura");
+
+            for (int i = 0; i < cuenta.size(); i++){
+                String[] servicio = cuenta.get(i);
+                escritor.println("Servicio: " + servicio[0] + ", " + servicio[2]);
+                escritor.println("Valor: " + servicio[1]);
+                String excedente = servicio[1];
+
+                if (servicio[2] == "Pago"){
+                    excedente = "0";
+                }
+
+                escritor.println("Excedente: " + excedente);
+                total += Integer.parseInt(excedente);
+            }
+
+            escritor.println("Total: " + total);
+
+        } catch(Exception e){
+            System.out.println("Error: " + e.getMessage());
+        }finally{
+            archivo.close();
+        }
+    }
 
 }
