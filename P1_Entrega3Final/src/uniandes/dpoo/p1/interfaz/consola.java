@@ -433,14 +433,17 @@ public class consola {
 
 	public void ejecutarReservarHabitacion(){
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
-		
+		String date = input("Ingrese la fecha en la que se realizará la reserva (dd-MM-yyyy)");
+		ArrayList<>
 	}
 
 	public void ejecutarCancelarReserva(){
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
 	}
 
-	public File ejecutarGenerarFactura(){
+	public void ejecutarGenerarFactura() throws IOException{
 		Integer idHabitacion = Integer.parseInt(input("Ingrese el id de la habitacion a revisar"));
+		hotel.gAdministradorHuespedes().nuevaFactura(null, idHabitacion);
+		System.out.println("La factura se ha generado con exito");
 	}
 }
