@@ -83,9 +83,12 @@ public class Hotel {
 	}
 
 
-	public uniandes.dpoo.p1.model.AdministradorServicios getAdministradorServicios() {
+	public AdministradorServicios getAdministradorServicios() {
 		return this.administradorServicios;
 	}
 	
+	public AdministradorHuespedes gAdministradorHuespedes(){
+		return this.administradorHuespedes;
+	}
 }
 
