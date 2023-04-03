@@ -1,9 +1,10 @@
 package uniandes.dpoo.p1.model;
 import java.util.Date;
 import java.util.HashMap;
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Calendario {
+public class Calendario implements Serializable {
 	
 	private HashMap<Date, Integer > tarifaEstandar = new HashMap<Date, Integer>();
 	
